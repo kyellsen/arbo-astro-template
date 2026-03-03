@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Interne Seiten ausschließen
+Disallow: /colors
+
+# Sitemap
+Sitemap: https://arbosphere.de/sitemap-index.xml

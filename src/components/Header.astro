@@ -1,0 +1,268 @@
+---
+// src/components/Header.astro
+// Responsive Header with hamburger menu for mobile + Dark/Light Mode Toggle
+import { siteConfig } from "../site.config";
+---
+
+<header class="sticky top-0 z-50 bg-base-100/80 backdrop-blur-md border-b border-base-300">
+	<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+		<!-- Logo / Wortmarke -->
+		<div class="flex items-center gap-2">
+			<span
+				class="w-8 h-8 rounded border border-primary/30 bg-primary/10 flex items-center justify-center text-primary font-mono font-bold text-sm"
+				>A</span
+			>
+			<span class="font-bold text-xl tracking-tight">
+				Arbo <span class="text-primary font-light">Template</span>
+			</span>
+		</div>
+
+		<!-- Desktop Navigation -->
+		<nav class="hidden md:flex gap-8 font-medium text-base" aria-label="Hauptnavigation">
+			<a href="/" class="hover:text-primary transition-colors">Start</a>
+			<a href="/services" class="hover:text-primary transition-colors">Leistungen</a>
+			{
+				siteConfig.showProjectsPage && (
+					<a href="/projects" class="hover:text-primary transition-colors">
+						Projekte
+					</a>
+				)
+			}
+			<a href="/about" class="hover:text-primary transition-colors">Über uns</a>
+			<a href="/contact" class="hover:text-primary transition-colors">Kontakt</a>
+		</nav>
+
+		<!-- Right: Theme Toggle + Hamburger -->
+		<div class="flex items-center gap-2">
+			<!-- Dark/Light Mode Toggle -->
+			<button
+				id="theme-toggle"
+				class="btn btn-ghost btn-sm btn-circle"
+				aria-label="Farbschema wechseln"
+			>
+				<!-- Sun icon (visible in dark mode) -->
+				<svg
+					id="icon-sun"
+					class="hidden w-5 h-5"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+					></path>
+				</svg>
+				<!-- Moon icon (visible in light mode) -->
+				<svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+					></path>
+				</svg>
+			</button>
+
+			<!-- Hamburger Button (mobile only) -->
+			<button
+				id="hamburger-btn"
+				class="btn btn-ghost btn-sm btn-circle md:hidden"
+				aria-label="Menü öffnen"
+				aria-expanded="false"
+				aria-controls="mobile-nav"
+			>
+				<svg
+					class="hamburger-icon w-6 h-6"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<line class="hamburger-line hamburger-line-1" x1="4" y1="6" x2="20" y2="6"></line>
+					<line class="hamburger-line hamburger-line-2" x1="4" y1="12" x2="20" y2="12"></line>
+					<line class="hamburger-line hamburger-line-3" x1="4" y1="18" x2="20" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+	</div>
+</header>
+
+<!-- Mobile Navigation Overlay -->
+<div
+	id="mobile-nav"
+	class="mobile-nav-overlay"
+	role="dialog"
+	aria-modal="true"
+	aria-label="Mobile Navigation"
+>
+	<div class="mobile-nav-panel">
+		<!-- Close Button -->
+		<div class="flex justify-end p-6">
+			<button
+				id="mobile-nav-close"
+				class="btn btn-ghost btn-sm btn-circle"
+				aria-label="Menü schließen"
+			>
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M6 18L18 6M6 6l12 12"></path>
+				</svg>
+			</button>
+		</div>
+
+		<!-- Mobile Nav Links -->
+		<nav class="flex flex-col items-center gap-2 px-6 mt-8" aria-label="Mobile Navigation">
+			<a href="/" class="mobile-nav-link">Start</a>
+			<a href="/services" class="mobile-nav-link">Leistungen</a>
+			{
+				siteConfig.showProjectsPage && (
+					<a href="/projects" class="mobile-nav-link">
+						Projekte
+					</a>
+				)
+			}
+			<a href="/about" class="mobile-nav-link">Über uns</a>
+			<a href="/contact" class="mobile-nav-link">Kontakt</a>
+		</nav>
+
+		<!-- Mobile Theme Toggle -->
+		<div class="flex justify-center mt-12">
+			<button
+				id="theme-toggle-mobile"
+				class="btn btn-ghost btn-sm gap-2"
+				aria-label="Farbschema wechseln"
+			>
+				<svg
+					id="icon-sun-mobile"
+					class="hidden w-5 h-5"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+					></path>
+				</svg>
+				<svg
+					id="icon-moon-mobile"
+					class="w-5 h-5"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+					></path>
+				</svg>
+				<span class="text-sm">Theme wechseln</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<script is:inline>
+	// Theme Toggle Logic
+	(function () {
+		const toggleDesktop = document.getElementById("theme-toggle");
+		const toggleMobile = document.getElementById("theme-toggle-mobile");
+		const html = document.documentElement;
+		const iconSun = document.getElementById("icon-sun");
+		const iconMoon = document.getElementById("icon-moon");
+		const iconSunMobile = document.getElementById("icon-sun-mobile");
+		const iconMoonMobile = document.getElementById("icon-moon-mobile");
+
+		function setTheme(theme) {
+			html.setAttribute("data-theme", theme);
+			localStorage.setItem("arbo-theme", theme);
+			if (theme === "arbo-dark") {
+				iconSun.classList.remove("hidden");
+				iconMoon.classList.add("hidden");
+				if (iconSunMobile) iconSunMobile.classList.remove("hidden");
+				if (iconMoonMobile) iconMoonMobile.classList.add("hidden");
+			} else {
+				iconSun.classList.add("hidden");
+				iconMoon.classList.remove("hidden");
+				if (iconSunMobile) iconSunMobile.classList.add("hidden");
+				if (iconMoonMobile) iconMoonMobile.classList.remove("hidden");
+			}
+		}
+
+		// Init: Check localStorage or system preference
+		const savedTheme = localStorage.getItem("arbo-theme");
+		if (savedTheme) {
+			setTheme(savedTheme);
+		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			setTheme("arbo-dark");
+		}
+
+		function toggleTheme() {
+			const current = html.getAttribute("data-theme");
+			setTheme(current === "arbo-dark" ? "arbo-light" : "arbo-dark");
+		}
+
+		toggleDesktop.addEventListener("click", toggleTheme);
+		if (toggleMobile) toggleMobile.addEventListener("click", toggleTheme);
+
+		// ── Mobile Navigation Logic ──
+		const hamburgerBtn = document.getElementById("hamburger-btn");
+		const mobileNav = document.getElementById("mobile-nav");
+		const mobileNavClose = document.getElementById("mobile-nav-close");
+		const mobileNavLinks = mobileNav.querySelectorAll(".mobile-nav-link");
+
+		function openMobileNav() {
+			mobileNav.classList.add("is-open");
+			hamburgerBtn.setAttribute("aria-expanded", "true");
+			hamburgerBtn.setAttribute("aria-label", "Menü schließen");
+			hamburgerBtn.classList.add("is-active");
+			document.body.classList.add("mobile-nav-body-lock");
+		}
+
+		function closeMobileNav() {
+			mobileNav.classList.remove("is-open");
+			hamburgerBtn.setAttribute("aria-expanded", "false");
+			hamburgerBtn.setAttribute("aria-label", "Menü öffnen");
+			hamburgerBtn.classList.remove("is-active");
+			document.body.classList.remove("mobile-nav-body-lock");
+		}
+
+		hamburgerBtn.addEventListener("click", () => {
+			const isOpen = mobileNav.classList.contains("is-open");
+			isOpen ? closeMobileNav() : openMobileNav();
+		});
+
+		mobileNavClose.addEventListener("click", closeMobileNav);
+
+		// Close on nav link click
+		mobileNavLinks.forEach((link) => {
+			link.addEventListener("click", closeMobileNav);
+		});
+
+		// Close on ESC
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && mobileNav.classList.contains("is-open")) {
+				closeMobileNav();
+			}
+		});
+
+		// Close on backdrop click
+		mobileNav.addEventListener("click", (e) => {
+			if (e.target === mobileNav) {
+				closeMobileNav();
+			}
+		});
+	})();
+</script>

@@ -1,0 +1,74 @@
+---
+// src/components/SEOHead.astro — Rendert alle SEO-relevanten Tags im <head>
+// Liest Defaults automatisch aus der zentralen Config; Props überschreiben bei Bedarf.
+
+import { siteConfig, pageSeo, organizationSchema, type PageSeo } from "../config/seo.ts";
+
+interface Props {
+	/** Seitentitel — wird ins titleTemplate eingesetzt */
+	title?: string;
+	/** Meta-Description */
+	description?: string;
+	/** Open-Graph-Bild (relativer Pfad) */
+	ogImage?: string;
+	/** Canonical URL (absolut) — default: automatisch aus aktuellem Pfad */
+	canonicalUrl?: string;
+	/** OG-Typ */
+	ogType?: "website" | "article";
+	/** Seite nicht indexieren? */
+	noindex?: boolean;
+	/** JSON-LD Structured Data auf dieser Seite ausgeben? (default: nur auf Startseite) */
+	jsonLd?: boolean;
+}
+
+// Aktuellen Pfad normalisieren (Trailing-Slash entfernen, "/" bleibt "/")
+const rawPath = Astro.url.pathname;
+const currentPath = rawPath === "/" ? "/" : rawPath.replace(/\/+$/, "");
+
+// Zentrale Defaults für diese Seite holen (falls vorhanden)
+const pageDefaults: Partial<PageSeo> = pageSeo[currentPath] ?? {};
+
+// Props mit Fallback-Kette: Prop > pageSeo > siteConfig
+const title = Astro.props.title ?? pageDefaults.title;
+const description =
+	Astro.props.description ?? pageDefaults.description ?? siteConfig.defaultDescription;
+const ogImage = Astro.props.ogImage ?? pageDefaults.ogImage ?? siteConfig.defaultOgImage;
+const ogType = Astro.props.ogType ?? pageDefaults.ogType ?? "website";
+const noindex = Astro.props.noindex ?? pageDefaults.noindex ?? false;
+const jsonLd = Astro.props.jsonLd ?? currentPath === "/";
+
+// Berechnete Werte
+const finalTitle = title ? siteConfig.titleTemplate.replace("%s", title) : siteConfig.defaultTitle;
+
+const canonicalUrl =
+	Astro.props.canonicalUrl ?? `${siteConfig.siteUrl}${currentPath === "/" ? "" : currentPath}`;
+
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${siteConfig.siteUrl}${ogImage}`;
+---
+
+<!-- Titel -->
+<title>{finalTitle}</title>
+
+<!-- Basis-Meta -->
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={finalTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content={siteConfig.locale} />
+<meta property="og:site_name" content={siteConfig.name} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={finalTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+{siteConfig.twitterHandle && <meta name="twitter:site" content={siteConfig.twitterHandle} />}
+
+<!-- JSON-LD Structured Data -->
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />}

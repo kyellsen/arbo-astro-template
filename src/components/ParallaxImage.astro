@@ -1,0 +1,29 @@
+---
+// src/components/ParallaxImage.astro — Fixed-image reveal between sections
+// Uses clip-path: inset(0) for mobile-compatible parallax effect
+import { Image } from "astro:assets";
+
+interface Props {
+	/** Image source — imported via astro:assets (ImageMetadata) */
+	src: ImageMetadata;
+	/** Accessible alt text */
+	alt: string;
+	/** Height of the visible window (CSS value), default: 60vh */
+	height?: string;
+}
+
+const { src, alt, height = "60vh" } = Astro.props;
+---
+
+<div class="parallax-window" style={`height: ${height}`}>
+	<div class="parallax-image">
+		<Image
+			src={src}
+			alt={alt}
+			widths={[640, 1024, 1536, 2048]}
+			sizes="100vw"
+			loading="lazy"
+			class="parallax-image__img"
+		/>
+	</div>
+</div>

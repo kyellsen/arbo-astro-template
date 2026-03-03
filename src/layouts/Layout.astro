@@ -1,0 +1,47 @@
+---
+// src/layouts/Layout.astro
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SEOHead from "../components/SEOHead.astro";
+
+interface Props {
+	/** Seitentitel (wird ins titleTemplate eingesetzt) */
+	title?: string;
+	/** Meta-Description — überschreibt den Default aus seo.ts */
+	description?: string;
+	/** OG-Image — überschreibt den Default aus seo.ts */
+	ogImage?: string;
+	/** Canonical URL — default: automatisch aus Pfad */
+	canonicalUrl?: string;
+	/** Seite nicht indexieren? */
+	noindex?: boolean;
+}
+
+const { title, description, ogImage, canonicalUrl, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de" data-theme="arbo-light">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<SEOHead
+			title={title}
+			description={description}
+			ogImage={ogImage}
+			canonicalUrl={canonicalUrl}
+			noindex={noindex}
+		/>
+	</head>
+	<body class="min-h-screen flex flex-col font-sans bg-base-100 text-base-content antialiased">
+		<Header />
+		<main class="grow">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

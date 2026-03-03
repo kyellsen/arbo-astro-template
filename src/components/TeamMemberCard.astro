@@ -1,0 +1,41 @@
+---
+// src/components/TeamMemberCard.astro
+// Reusable card component for team member profiles.
+import { Image } from "astro:assets";
+
+interface Props {
+	name: string;
+	role: string;
+	description: string;
+	imageSrc: ImageMetadata;
+	imageAlt: string;
+}
+
+const { name, role, description, imageSrc, imageAlt } = Astro.props;
+---
+
+<article
+	class="group bg-base-200 rounded-2xl border border-base-300 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+>
+	<!-- Portrait Image -->
+	<div class="aspect-3/4 overflow-hidden">
+		<Image
+			src={imageSrc}
+			alt={imageAlt}
+			class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+			widths={[320, 480, 640]}
+			sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+		/>
+	</div>
+
+	<!-- Info -->
+	<div class="p-6">
+		<h3 class="text-lg mb-1">{name}</h3>
+		<span
+			class="inline-block px-3 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide uppercase mb-3"
+		>
+			{role}
+		</span>
+		<p class="text-sm text-base-content/60 leading-relaxed">{description}</p>
+	</div>
+</article>

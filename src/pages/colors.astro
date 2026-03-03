@@ -1,0 +1,651 @@
+---
+// src/pages/colors.astro
+// Farbübersicht: Zeigt die komplette Oktett v3 Palette in Light & Dark Mode
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Farben - Arbo CI">
+	<section class="max-w-6xl mx-auto px-6 py-16 animate-fade-in">
+		<!-- ═══ Hero ═══ -->
+		<div class="mb-12">
+			<span
+				class="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-widest uppercase mb-4"
+			>
+				Design System
+			</span>
+			<h1>Arbo CI — Farbpalette</h1>
+			<p class="text-base-content/70 mt-4 max-w-2xl">
+				9 chromatische + 1 achromatische Farbe, definiert in OKLCH. Base-Hintergründe auf Hue 160°
+				(= Emerald) abgestimmt. Nutze den Toggle oben rechts für Light / Dark Mode.
+			</p>
+		</div>
+
+		<!-- ═══ 1. Farbkreis — visueller Hero ═══ -->
+		<h2 class="mb-6 flex items-center gap-3">
+			<span class="w-8 h-1 bg-primary rounded-full"></span>
+			Farbkreis — Hue-Verteilung
+		</h2>
+		<div class="flex flex-wrap gap-8 items-start justify-center mb-16">
+			<div class="relative w-full max-w-[460px] aspect-square mx-auto">
+				<svg
+					id="color-wheel-svg"
+					viewBox="0 0 460 460"
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-full h-full"
+				>
+					<circle
+						cx="230"
+						cy="230"
+						r="170"
+						fill="none"
+						stroke="currentColor"
+						stroke-opacity="0.1"
+						stroke-width="1"
+						stroke-dasharray="4 4"></circle>
+					<circle
+						cx="230"
+						cy="230"
+						r="125"
+						fill="none"
+						stroke="currentColor"
+						stroke-opacity="0.06"
+						stroke-width="1"></circle>
+				</svg>
+			</div>
+			<div class="flex flex-col items-center gap-2 pt-4">
+				<div class="w-14 h-14 rounded-full bg-slate border-2 border-slate"></div>
+				<span class="text-xs font-mono text-base-content/60">slate</span>
+				<span class="text-xs text-base-content/40">achromatisch</span>
+			</div>
+		</div>
+
+		<!-- ═══ 2. Markenfarben (Theme-Rollen) ═══ -->
+		<h2 class="mb-6 flex items-center gap-3">
+			<span class="w-8 h-1 bg-primary rounded-full"></span>
+			Markenfarben
+		</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+			<!-- Primary -->
+			<div class="rounded-2xl border border-base-300 overflow-hidden">
+				<div class="h-28 bg-primary flex items-end p-4">
+					<span class="text-primary-content font-mono text-sm font-bold">primary</span>
+				</div>
+				<div class="p-4 bg-base-100">
+					<p class="font-bold">Arbo Emerald</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">Light: oklch(52% 0.17 160)</p>
+					<p class="text-xs text-base-content/50 font-mono">Dark: oklch(65% 0.18 160)</p>
+					<p class="text-xs text-base-content/40 mt-1">= palette emerald · Hue 160°</p>
+					<div class="mt-3 flex gap-2">
+						<span class="badge badge-primary">Badge</span>
+						<span class="badge badge-primary badge-outline">Outline</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Secondary -->
+			<div class="rounded-2xl border border-base-300 overflow-hidden">
+				<div class="h-28 bg-secondary flex items-end p-4">
+					<span class="text-secondary-content font-mono text-sm font-bold">secondary</span>
+				</div>
+				<div class="p-4 bg-base-100">
+					<p class="font-bold">Teal</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">Light: oklch(61% 0.16 200)</p>
+					<p class="text-xs text-base-content/50 font-mono">Dark: oklch(70% 0.14 200)</p>
+					<p class="text-xs text-base-content/40 mt-1">= palette teal · Hue 200°</p>
+					<div class="mt-3 flex gap-2">
+						<span class="badge badge-secondary">Badge</span>
+						<span class="badge badge-secondary badge-outline">Outline</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Accent -->
+			<div class="rounded-2xl border border-base-300 overflow-hidden">
+				<div class="h-28 bg-accent flex items-end p-4">
+					<span class="text-accent-content font-mono text-sm font-bold">accent</span>
+				</div>
+				<div class="p-4 bg-base-100">
+					<p class="font-bold">Gold</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">Light: oklch(75% 0.22 85)</p>
+					<p class="text-xs text-base-content/50 font-mono">Dark: oklch(82% 0.17 85)</p>
+					<p class="text-xs text-base-content/40 mt-1">= palette gold · Hue 85°</p>
+					<div class="mt-3 flex gap-2">
+						<span class="badge badge-accent">Badge</span>
+						<span class="badge badge-accent badge-outline">Outline</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══ 3. Semantische Farben ═══ -->
+		<h2 class="mb-6 flex items-center gap-3">
+			<span class="w-8 h-1 bg-info rounded-full"></span>
+			Semantische Farben
+		</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+			<!-- Info -->
+			<div class="rounded-2xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-info flex items-end p-3">
+					<span class="text-info-content font-mono text-xs font-bold">info</span>
+				</div>
+				<div class="p-4 bg-base-100">
+					<p class="font-bold text-sm">Cornflower</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">L: oklch(65% 0.15 245)</p>
+					<p class="text-xs text-base-content/50 font-mono">D: oklch(73% 0.10 245)</p>
+					<div class="mt-2 flex gap-2">
+						<span class="badge badge-info badge-sm">Info</span>
+						<span class="badge badge-info badge-outline badge-sm">Outline</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Success -->
+			<div class="rounded-2xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-success flex items-end p-3">
+					<span class="text-success-content font-mono text-xs font-bold">success</span>
+				</div>
+				<div class="p-4 bg-base-100">
+					<p class="font-bold text-sm">Chartreuse</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">L: oklch(65% 0.16 130)</p>
+					<p class="text-xs text-base-content/50 font-mono">D: oklch(73% 0.13 130)</p>
+					<div class="mt-2 flex gap-2">
+						<span class="badge badge-success badge-sm">Success</span>
+						<span class="badge badge-success badge-outline badge-sm">Outline</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Warning -->
+			<div class="rounded-2xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-warning flex items-end p-3">
+					<span class="text-warning-content font-mono text-xs font-bold">warning</span>
+				</div>
+				<div class="p-4 bg-base-100">
+					<p class="font-bold text-sm">Gold</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">L: oklch(75% 0.22 85)</p>
+					<p class="text-xs text-base-content/50 font-mono">D: oklch(82% 0.17 85)</p>
+					<div class="mt-2 flex gap-2">
+						<span class="badge badge-warning badge-sm">Warning</span>
+						<span class="badge badge-warning badge-outline badge-sm">Outline</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Error -->
+			<div class="rounded-2xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-error flex items-end p-3">
+					<span class="text-error-content font-mono text-xs font-bold">error</span>
+				</div>
+				<div class="p-4 bg-base-100">
+					<p class="font-bold text-sm">Scarlet</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">L: oklch(58% 0.22 25)</p>
+					<p class="text-xs text-base-content/50 font-mono">D: oklch(68% 0.17 25)</p>
+					<div class="mt-2 flex gap-2">
+						<span class="badge badge-error badge-sm">Error</span>
+						<span class="badge badge-error badge-outline badge-sm">Outline</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══ 4. Neutral & Base ═══ -->
+		<h2 class="mb-6 flex items-center gap-3">
+			<span class="w-8 h-1 bg-neutral rounded-full"></span>
+			Neutral & Base
+		</h2>
+		<p class="text-base-content/60 text-sm mb-6 max-w-2xl">
+			Hintergründe auf Hue 160° (Emerald) gestimmt, minimale Chroma für warmen, natürlichen Ton.
+		</p>
+		<div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-16">
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-base-100 border-b border-base-300"></div>
+				<div class="p-3">
+					<p class="text-xs font-mono text-base-content/70">base-100</p>
+					<p class="text-xs font-mono text-base-content/40 mt-1">L: 98% C: 0.005</p>
+				</div>
+			</div>
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-base-200"></div>
+				<div class="p-3">
+					<p class="text-xs font-mono text-base-content/70">base-200</p>
+					<p class="text-xs font-mono text-base-content/40 mt-1">L: 95% C: 0.008</p>
+				</div>
+			</div>
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-base-300"></div>
+				<div class="p-3">
+					<p class="text-xs font-mono text-base-content/70">base-300</p>
+					<p class="text-xs font-mono text-base-content/40 mt-1">L: 90% C: 0.01</p>
+				</div>
+			</div>
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-neutral"></div>
+				<div class="p-3">
+					<p class="text-xs font-mono text-base-content/70">neutral</p>
+					<p class="text-xs font-mono text-base-content/40 mt-1">Hue 250°</p>
+				</div>
+			</div>
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-20 bg-base-content"></div>
+				<div class="p-3">
+					<p class="text-xs font-mono text-base-content/70">base-content</p>
+					<p class="text-xs font-mono text-base-content/40 mt-1">Textfarbe</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══ 5. UI-Komponenten ═══ -->
+		<h2 class="mb-6 flex items-center gap-3">
+			<span class="w-8 h-1 bg-secondary rounded-full"></span>
+			UI-Komponenten
+		</h2>
+
+		<!-- Buttons -->
+		<h3 class="text-base font-semibold mb-3">Buttons</h3>
+		<div class="flex flex-wrap gap-3 mb-8">
+			<button class="btn btn-primary">Primary</button>
+			<button class="btn btn-secondary">Secondary</button>
+			<button class="btn btn-accent">Accent</button>
+			<button class="btn btn-neutral">Neutral</button>
+			<button class="btn btn-info">Info</button>
+			<button class="btn btn-success">Success</button>
+			<button class="btn btn-warning">Warning</button>
+			<button class="btn btn-error">Error</button>
+			<button class="btn btn-ghost">Ghost</button>
+			<button class="btn btn-outline btn-primary">Outline</button>
+		</div>
+
+		<!-- Alerts -->
+		<h3 class="text-base font-semibold mb-3">Alerts</h3>
+		<div class="space-y-3 mb-16">
+			<div role="alert" class="alert alert-info">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-5 h-5 shrink-0"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+				</svg>
+				<span>Info: Ihre Baumkontrolle steht in 3 Monaten an.</span>
+			</div>
+			<div role="alert" class="alert alert-success">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-5 h-5 shrink-0"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+				</svg>
+				<span>Erfolg: Gutachten wurde erfolgreich erstellt.</span>
+			</div>
+			<div role="alert" class="alert alert-warning">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-5 h-5 shrink-0"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+					></path>
+				</svg>
+				<span>Warnung: Verkehrssicherheit eingeschränkt.</span>
+			</div>
+			<div role="alert" class="alert alert-error">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-5 h-5 shrink-0"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+				</svg>
+				<span>Fehler: Kritischer Defekt festgestellt.</span>
+			</div>
+		</div>
+
+		<!-- ═══ 6. Typografie ═══ -->
+		<h2 class="mb-6 flex items-center gap-3">
+			<span class="w-8 h-1 bg-accent rounded-full"></span>
+			Typografie
+		</h2>
+		<div class="space-y-6 mb-16 bg-base-200 rounded-2xl p-8 border border-base-300">
+			<div>
+				<span class="text-xs font-mono text-base-content/50 uppercase tracking-widest"
+					>h1 — clamp(2rem, 4vw, 3.5rem) · Geist Bold</span
+				>
+				<h1 class="mt-1">Präzision im Baum</h1>
+			</div>
+			<div>
+				<span class="text-xs font-mono text-base-content/50 uppercase tracking-widest"
+					>h2 — clamp(1.75rem, 3vw, 2.5rem) · Geist Bold</span
+				>
+				<h2 class="mt-1">Leistungsportfolio</h2>
+			</div>
+			<div>
+				<span class="text-xs font-mono text-base-content/50 uppercase tracking-widest"
+					>h3 — clamp(1.25rem, 2vw, 1.75rem) · Geist Semibold</span
+				>
+				<h3 class="mt-1">Fachgerechte Baumpflege</h3>
+			</div>
+			<div>
+				<span class="text-xs font-mono text-base-content/50 uppercase tracking-widest"
+					>Body — 18px Base · Geist Regular</span
+				>
+				<p class="mt-1">
+					Wir verbinden traditionelles Handwerk in der Seilklettertechnik mit modernster
+					bioakustischer und biomechanischer Diagnostik.
+				</p>
+			</div>
+			<div>
+				<span class="text-xs font-mono text-base-content/50 uppercase tracking-widest"
+					>Mono — Geist Mono</span
+				>
+				<p class="mt-1 font-mono">SCHALL(V): 1450 m/s · INTEGRITÄT: 94.2% · ZTV-Baumpflege</p>
+			</div>
+		</div>
+
+		<!-- ═══ 7. Extended Palette ═══ -->
+		<h2 class="mb-6 flex items-center gap-3">
+			<span class="w-8 h-1 bg-scarlet rounded-full"></span>
+			Extended Palette
+		</h2>
+		<p class="text-base-content/60 text-sm mb-8 max-w-2xl">
+			10 Farben (9 chromatisch + 1 achromatisch), Oktett v3 + Amber. Nutzbar als Tailwind-Utilities: <code
+				class="font-mono text-xs bg-base-300 px-1.5 py-0.5 rounded">bg-scarlet</code
+			>,
+			<code class="font-mono text-xs bg-base-300 px-1.5 py-0.5 rounded">text-gold</code>,
+			<code class="font-mono text-xs bg-base-300 px-1.5 py-0.5 rounded">border-violet</code> …
+		</p>
+
+		<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
+			<!-- Scarlet -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-scarlet flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">scarlet</span>
+				</div>
+				<div class="h-6 bg-scarlet-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Scarlet</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">58% 0.22 25°</p>
+					<p class="text-xs text-base-content/40">= error</p>
+				</div>
+			</div>
+
+			<!-- Amber -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-amber flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">amber</span>
+				</div>
+				<div class="h-6 bg-amber-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Amber</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">55% 0.14 55°</p>
+				</div>
+			</div>
+
+			<!-- Gold -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-gold flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-neutral">gold</span>
+				</div>
+				<div class="h-6 bg-gold-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Gold</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">75% 0.22 85°</p>
+					<p class="text-xs text-base-content/40">= accent · warning</p>
+				</div>
+			</div>
+
+			<!-- Chartreuse -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-chartreuse flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">chartreuse</span>
+				</div>
+				<div class="h-6 bg-chartreuse-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Chartreuse</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">65% 0.16 130°</p>
+					<p class="text-xs text-base-content/40">= success</p>
+				</div>
+			</div>
+
+			<!-- Emerald -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-emerald flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">emerald</span>
+				</div>
+				<div class="h-6 bg-emerald-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Emerald</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">52% 0.17 160°</p>
+					<p class="text-xs text-base-content/40">= primary</p>
+				</div>
+			</div>
+
+			<!-- Teal -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-teal flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">teal</span>
+				</div>
+				<div class="h-6 bg-teal-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Teal</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">61% 0.16 200°</p>
+					<p class="text-xs text-base-content/40">= secondary</p>
+				</div>
+			</div>
+
+			<!-- Cornflower -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-cornflower flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">cornflower</span>
+				</div>
+				<div class="h-6 bg-cornflower-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Cornflower</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">65% 0.15 245°</p>
+					<p class="text-xs text-base-content/40">= info</p>
+				</div>
+			</div>
+
+			<!-- Violet -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-violet flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">violet</span>
+				</div>
+				<div class="h-6 bg-violet-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Violet</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">60% 0.18 290°</p>
+				</div>
+			</div>
+
+			<!-- Magenta -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-magenta flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">magenta</span>
+				</div>
+				<div class="h-6 bg-magenta-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Magenta</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">65% 0.20 335°</p>
+				</div>
+			</div>
+
+			<!-- Slate -->
+			<div class="rounded-xl border border-base-300 overflow-hidden">
+				<div class="h-14 bg-slate flex items-end p-2">
+					<span class="font-mono text-xs font-bold text-white">slate</span>
+				</div>
+				<div class="h-6 bg-slate-light"></div>
+				<div class="p-3 bg-base-100">
+					<p class="font-bold text-xs">Slate</p>
+					<p class="text-xs text-base-content/50 font-mono mt-0.5">55% 0.02 achrom.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const colors = [
+		{ hue: 25, name: "Scarlet", color: "oklch(58% 0.22 25)", role: "error" },
+		{ hue: 55, name: "Amber", color: "oklch(55% 0.14 55)", role: "" },
+		{ hue: 85, name: "Gold", color: "oklch(75% 0.22 85)", role: "accent" },
+		{ hue: 130, name: "Chartreuse", color: "oklch(65% 0.16 130)", role: "success" },
+		{ hue: 160, name: "Emerald", color: "oklch(52% 0.17 160)", role: "primary" },
+		{ hue: 200, name: "Teal", color: "oklch(61% 0.16 200)", role: "secondary" },
+		{ hue: 245, name: "Cornflower", color: "oklch(65% 0.15 245)", role: "info" },
+		{ hue: 290, name: "Violet", color: "oklch(60% 0.18 290)", role: "" },
+		{ hue: 335, name: "Magenta", color: "oklch(65% 0.20 335)", role: "" },
+	];
+	const CX = 230,
+		CY = 230,
+		R = 170,
+		RI = 125;
+	const svg = document.getElementById("color-wheel-svg");
+	if (svg) {
+		// Arc segments between colors
+		colors.forEach((c, i) => {
+			const next = colors[(i + 1) % colors.length];
+			const a1 = ((c.hue - 90) * Math.PI) / 180;
+			const a2 = ((next.hue - 90) * Math.PI) / 180;
+			// Connector line
+			const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+			line.setAttribute("x1", String(CX + R * Math.cos(a1)));
+			line.setAttribute("y1", String(CY + R * Math.sin(a1)));
+			line.setAttribute("x2", String(CX + R * Math.cos(a2)));
+			line.setAttribute("y2", String(CY + R * Math.sin(a2)));
+			line.setAttribute("stroke", "currentColor");
+			line.setAttribute("stroke-opacity", "0.12");
+			line.setAttribute("stroke-width", "1");
+			svg.appendChild(line);
+		});
+
+		// Gap labels
+		colors.forEach((c, i) => {
+			const next = colors[(i + 1) % colors.length];
+			let gap = next.hue - c.hue;
+			if (gap <= 0) gap += 360;
+			const mid = c.hue + gap / 2;
+			const a = ((mid - 90) * Math.PI) / 180;
+			const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+			t.setAttribute("x", String(CX + RI * Math.cos(a)));
+			t.setAttribute("y", String(CY + RI * Math.sin(a)));
+			t.setAttribute("text-anchor", "middle");
+			t.setAttribute("dominant-baseline", "central");
+			t.setAttribute("fill", "currentColor");
+			t.setAttribute("fill-opacity", "0.3");
+			t.setAttribute("font-size", "11");
+			t.setAttribute("font-family", "monospace");
+			t.textContent = gap + "°";
+			svg.appendChild(t);
+		});
+
+		// Dots + labels
+		colors.forEach((c) => {
+			const a = ((c.hue - 90) * Math.PI) / 180;
+			const dx = CX + R * Math.cos(a);
+			const dy = CY + R * Math.sin(a);
+			const isPrimary = c.role === "primary";
+
+			// Dot
+			const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+			dot.setAttribute("cx", String(dx));
+			dot.setAttribute("cy", String(dy));
+			dot.setAttribute("r", isPrimary ? "15" : "12");
+			dot.setAttribute("fill", c.color);
+			dot.setAttribute("stroke", isPrimary ? "white" : c.color);
+			dot.setAttribute("stroke-width", isPrimary ? "3" : "2");
+			dot.setAttribute("stroke-opacity", isPrimary ? "0.8" : "0.4");
+			svg.appendChild(dot);
+
+			// Hue number in dot
+			const ht = document.createElementNS("http://www.w3.org/2000/svg", "text");
+			ht.setAttribute("x", String(dx));
+			ht.setAttribute("y", String(dy));
+			ht.setAttribute("text-anchor", "middle");
+			ht.setAttribute("dominant-baseline", "central");
+			ht.setAttribute("fill", "white");
+			ht.setAttribute("font-size", "9");
+			ht.setAttribute("font-weight", "bold");
+			ht.setAttribute("font-family", "monospace");
+			ht.textContent = c.hue + "°";
+			svg.appendChild(ht);
+
+			// Name label
+			const lR = R + 26;
+			const lx = CX + lR * Math.cos(a);
+			const ly = CY + lR * Math.sin(a);
+			const nl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+			nl.setAttribute("x", String(lx));
+			nl.setAttribute("y", String(ly));
+			nl.setAttribute("text-anchor", "middle");
+			nl.setAttribute("dominant-baseline", "central");
+			nl.setAttribute("fill", c.color);
+			nl.setAttribute("font-size", "11");
+			nl.setAttribute("font-weight", "600");
+			nl.textContent = c.name;
+			svg.appendChild(nl);
+
+			// Role label
+			if (c.role) {
+				const rl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+				rl.setAttribute("x", String(lx));
+				rl.setAttribute("y", String(ly + 13));
+				rl.setAttribute("text-anchor", "middle");
+				rl.setAttribute("dominant-baseline", "central");
+				rl.setAttribute("fill", "currentColor");
+				rl.setAttribute("fill-opacity", "0.4");
+				rl.setAttribute("font-size", "9");
+				rl.setAttribute("font-family", "monospace");
+				rl.textContent = "= " + c.role;
+				svg.appendChild(rl);
+			}
+		});
+
+		// Center text
+		const ct = document.createElementNS("http://www.w3.org/2000/svg", "text");
+		ct.setAttribute("x", String(CX));
+		ct.setAttribute("y", String(CY - 8));
+		ct.setAttribute("text-anchor", "middle");
+		ct.setAttribute("fill", "currentColor");
+		ct.setAttribute("fill-opacity", "0.5");
+		ct.setAttribute("font-size", "13");
+		ct.setAttribute("font-weight", "bold");
+		ct.textContent = "9 Farben";
+		svg.appendChild(ct);
+		const st = document.createElementNS("http://www.w3.org/2000/svg", "text");
+		st.setAttribute("x", String(CX));
+		st.setAttribute("y", String(CY + 10));
+		st.setAttribute("text-anchor", "middle");
+		st.setAttribute("fill", "currentColor");
+		st.setAttribute("fill-opacity", "0.3");
+		st.setAttribute("font-size", "10");
+		st.setAttribute("font-family", "monospace");
+		st.textContent = "Ø 40° · Min 30° · Max 50°";
+		svg.appendChild(st);
+	}
+</script>

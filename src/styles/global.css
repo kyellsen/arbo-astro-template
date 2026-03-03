@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────
+   DaisyUI Plugin + Theme-Konfiguration
+   ────────────────────────────────────────────────────────── */
+
+@plugin "daisyui" {
+	themes:
+		arbo-light --default,
+		arbo-dark;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Arbo CI Light Theme
+   Farben in OKLCH für perceptual uniformity.
+   ────────────────────────────────────────────────────────── */
+
+@plugin "daisyui/theme" {
+	name: "arbo-light";
+	color-scheme: light;
+
+	/* Hintergründe */
+	--color-base-100: oklch(98% 0.005 160);
+	/* Kühles Off-White mit Emerald-Tint */
+	--color-base-200: oklch(95% 0.008 160);
+	/* Leichtes Grau für Cards/Sections */
+	--color-base-300: oklch(90% 0.01 160);
+	/* Borders & Trennlinien */
+	--color-base-content: oklch(25% 0.02 250);
+	/* Fast-Schwarz für Text */
+
+	/* Primärfarbe: Arbo Emerald (= palette emerald, 160°) */
+	--color-primary: oklch(52% 0.17 160);
+	--color-primary-content: oklch(98% 0 0);
+
+	/* Sekundärfarbe: Teal */
+	--color-secondary: oklch(61% 0.16 200);
+	/* Kühles Teal */
+	--color-secondary-content: oklch(98% 0 0);
+
+	/* Akzentfarbe: Gold */
+	--color-accent: oklch(75% 0.22 85);
+	/* Leuchtendes Gold */
+	--color-accent-content: oklch(25% 0.05 85);
+
+	/* Neutral */
+	--color-neutral: oklch(30% 0.02 250);
+	/* Dunkles Neutral für Badges etc. */
+	--color-neutral-content: oklch(95% 0.01 250);
+
+	/* Semantische Farben (= Oktett v3 Werte) */
+	--color-info: oklch(65% 0.15 245);
+	/* = palette cornflower */
+	--color-info-content: oklch(98% 0 0);
+	--color-success: oklch(65% 0.16 130);
+	/* = palette chartreuse */
+	--color-success-content: oklch(98% 0 0);
+	--color-warning: oklch(75% 0.22 85);
+	/* = palette gold */
+	--color-warning-content: oklch(25% 0.05 85);
+	--color-error: oklch(58% 0.22 25);
+	/* = palette scarlet */
+	--color-error-content: oklch(98% 0 0);
+
+	--radius-box: 1rem;
+	--border: 1px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Arbo CI Dark Theme
+   ────────────────────────────────────────────────────────── */
+
+@plugin "daisyui/theme" {
+	name: "arbo-dark";
+	color-scheme: dark;
+
+	/* Hintergründe: Tiefes Emerald-Grau */
+	--color-base-100: oklch(22% 0.015 160);
+	--color-base-200: oklch(18% 0.015 160);
+	--color-base-300: oklch(26% 0.02 160);
+	--color-base-content: oklch(90% 0.01 160);
+	/* Helles, kühles Weiß */
+
+	/* Primärfarbe: Arbo Emerald (= palette emerald, dark) */
+	--color-primary: oklch(65% 0.18 160);
+	--color-primary-content: oklch(18% 0.05 160);
+
+	/* Sekundärfarbe: Teal */
+	--color-secondary: oklch(70% 0.14 200);
+	--color-secondary-content: oklch(18% 0.05 200);
+
+	/* Akzentfarbe: Gold */
+	--color-accent: oklch(82% 0.17 85);
+	--color-accent-content: oklch(20% 0.05 85);
+
+	/* Neutral */
+	--color-neutral: oklch(35% 0.02 250);
+	--color-neutral-content: oklch(90% 0.01 250);
+
+	/* Semantische Farben (= Oktett v3, dark) */
+	--color-info: oklch(73% 0.1 245);
+	/* = cornflower dark */
+	--color-info-content: oklch(18% 0.05 245);
+	--color-success: oklch(73% 0.13 130);
+	/* = chartreuse dark */
+	--color-success-content: oklch(18% 0.05 130);
+	--color-warning: oklch(82% 0.17 85);
+	/* = gold dark */
+	--color-warning-content: oklch(20% 0.05 85);
+	--color-error: oklch(68% 0.17 25);
+	/* = scarlet dark */
+	--color-error-content: oklch(18% 0.05 25);
+
+	--radius-box: 1rem;
+	--border: 1px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Fonts: Geist Sans & Geist Mono
+   (werden in Layout.astro über @fontsource importiert)
+   ────────────────────────────────────────────────────────── */
+
+@theme {
+	--font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "Geist Mono", ui-monospace, monospace;
+
+	/* ──────────────────────────────────────────────────────────
+       Extended Palette (Oktett v3 + Amber)
+       9 chromatische + 1 achromatische Farbe, je mit Light-Variante.
+       Nutzbar als Tailwind-Utilities: bg-scarlet, text-gold, border-violet …
+       ────────────────────────────────────────────────────────── */
+
+	/* Chromatische Palette */
+	--color-scarlet: oklch(58% 0.22 25);
+	--color-amber: oklch(55% 0.14 55);
+	--color-gold: oklch(75% 0.22 85);
+	--color-chartreuse: oklch(65% 0.16 130);
+	--color-emerald: oklch(52% 0.17 160);
+	--color-teal: oklch(61% 0.16 200);
+	--color-cornflower: oklch(65% 0.15 245);
+	--color-violet: oklch(60% 0.18 290);
+	--color-magenta: oklch(65% 0.2 335);
+
+	/* Achromatisch */
+	--color-slate: oklch(55% 0.02 250);
+
+	/* Light-Varianten */
+	--color-scarlet-light: oklch(75% 0.15 25);
+	--color-amber-light: oklch(70% 0.09 55);
+	--color-gold-light: oklch(90% 0.17 85);
+	--color-chartreuse-light: oklch(80% 0.1 130);
+	--color-emerald-light: oklch(67% 0.12 160);
+	--color-teal-light: oklch(76% 0.08 200);
+	--color-cornflower-light: oklch(80% 0.1 245);
+	--color-violet-light: oklch(75% 0.13 290);
+	--color-magenta-light: oklch(80% 0.15 335);
+	--color-slate-light: oklch(70% 0.01 250);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Globale Typografie
+   ────────────────────────────────────────────────────────── */
+
+html {
+	font-size: clamp(16px, 2.5vw + 8px, 18px);
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--font-sans);
+}
+
+.font-mono {
+	font-family: var(--font-mono);
+}
+
+@layer base {
+	h1 {
+		font-size: clamp(2rem, 4vw, 3.5rem);
+		@apply font-bold leading-tight tracking-tight;
+		letter-spacing: -0.025em;
+	}
+
+	h2 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		@apply font-bold leading-snug tracking-tight;
+		letter-spacing: -0.02em;
+	}
+
+	h3 {
+		font-size: clamp(1.25rem, 2vw, 1.75rem);
+		@apply font-semibold leading-snug tracking-tight;
+	}
+}
+
+/* ──────────────────────────────────────────────────────────
+   CI Utility-Klassen
+   ────────────────────────────────────────────────────────── */
+
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Parallax Image Windows
+   Uses clip-path: inset(0) so position: fixed is clipped to
+   the parent container — works on desktop AND mobile (iOS).
+   ────────────────────────────────────────────────────────── */
+
+.parallax-window {
+	position: relative;
+	overflow: hidden;
+	clip-path: inset(0);
+	-webkit-clip-path: inset(0);
+}
+
+.parallax-image {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+}
+
+.parallax-image__img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Content sections need an opaque background to slide over the parallax images */
+.content-section {
+	position: relative;
+	z-index: 1;
+	background-color: var(--color-base-100);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Mobile Navigation
+   ────────────────────────────────────────────────────────── */
+
+/* Body scroll lock when mobile nav is open */
+.mobile-nav-body-lock {
+	overflow: hidden;
+}
+
+/* Overlay backdrop */
+.mobile-nav-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 40;
+	background-color: oklch(0% 0 0 / 0.5);
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.3s ease,
+		visibility 0.3s ease;
+}
+
+.mobile-nav-overlay.is-open {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Slide-in panel */
+.mobile-nav-panel {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 80%;
+	max-width: 320px;
+	height: 100%;
+	background-color: var(--color-base-100);
+	transform: translateX(100%);
+	transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+	overflow-y: auto;
+	box-shadow: -4px 0 24px oklch(0% 0 0 / 0.15);
+}
+
+.mobile-nav-overlay.is-open .mobile-nav-panel {
+	transform: translateX(0);
+}
+
+/* Nav links */
+.mobile-nav-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 52px;
+	padding: 0.75rem 1.5rem;
+	font-size: 1.125rem;
+	font-weight: 500;
+	border-radius: 0.75rem;
+	color: var(--color-base-content);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+	background-color: var(--color-primary);
+	color: var(--color-primary-content);
+	outline: none;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Hamburger Icon Animation (3 lines → X)
+   ────────────────────────────────────────────────────────── */
+
+.hamburger-line {
+	transition:
+		transform 0.3s ease,
+		opacity 0.3s ease;
+	transform-origin: center;
+}
+
+.is-active .hamburger-line-1 {
+	transform: translateY(6px) rotate(45deg);
+}
+
+.is-active .hamburger-line-2 {
+	opacity: 0;
+}
+
+.is-active .hamburger-line-3 {
+	transform: translateY(-6px) rotate(-45deg);
+}

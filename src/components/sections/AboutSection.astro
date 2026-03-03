@@ -1,0 +1,199 @@
+---
+// src/components/sections/AboutSection.astro — Über uns (reusable)
+// Standortdaten stammen aus site.config.ts (Single Source of Truth).
+import { Image } from "astro:assets";
+import TeamMemberCard from "../TeamMemberCard.astro";
+import heroImage from "../../assets/heroes/about-hero.png";
+import imgTeamGroup from "../../assets/heroes/about-hero.png";
+import { siteConfig } from "../../site.config";
+
+// Hero image exported for use in parallax start page
+export const sectionMeta = {
+	heroImage,
+	heroAlt: "Das Arbosphere-Team auf einer Wiese in der Holsteinischen Schweiz",
+};
+
+// Team-Bilder (via astro:assets optimiert)
+import imgKai from "../../assets/team/kai-ellersen.png";
+import imgLena from "../../assets/team/lena-moeller.png";
+import imgMarkus from "../../assets/team/markus-thiel.png";
+import imgJana from "../../assets/team/jana-peters.png";
+
+const addr = siteConfig.company.address;
+
+const teamMembers = [
+	{
+		name: "Kai Ellersen",
+		role: "Geschäftsführer & Baumsachverständiger",
+		description: "Seit über 15 Jahren widmet er sich dem Schutz und der Pflege von Bäumen.",
+		imageSrc: imgKai,
+		imageAlt: "Porträt von Kai Ellersen, Geschäftsführer",
+	},
+	{
+		name: "Lena Möller",
+		role: "Forstwirtin & Kletterin",
+		description: "Mit Seil und Säge sorgt sie dafür, dass jeder Baum in besten Händen ist.",
+		imageSrc: imgLena,
+		imageAlt: "Porträt von Lena Möller, Forstwirtin",
+	},
+	{
+		name: "Markus Thiel",
+		role: "Baumpfleger & Baumkontrolleur",
+		description: "Er verbindet präzises Handwerk mit einem geschulten Blick für Baumstatik.",
+		imageSrc: imgMarkus,
+		imageAlt: "Porträt von Markus Thiel, Baumpfleger",
+	},
+	{
+		name: "Jana Peters",
+		role: "Büro & Organisation",
+		description: "Sie hält alle Fäden zusammen und ist die erste Ansprechpartnerin für Kunden.",
+		imageSrc: imgJana,
+		imageAlt: "Porträt von Jana Peters, Büro & Organisation",
+	},
+];
+---
+
+<!-- ═══════════════════════════════════════════════════
+     Sektion 1: Über den Betrieb
+     ═══════════════════════════════════════════════════ -->
+<section class="max-w-6xl mx-auto px-6 pt-24 pb-16 animate-fade-in">
+	<div class="mb-12">
+		<span
+			class="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-widest uppercase mb-4"
+		>
+			Wer wir sind
+		</span>
+		<h2>Über uns</h2>
+	</div>
+
+	<div class="grid md:grid-cols-2 gap-12 items-start">
+		<!-- Text -->
+		<div>
+			<p class="text-base-content/70 leading-relaxed mb-6">
+				Arbosphere ist Ihr Partner für professionelle Baumpflege und Baumsachverständigung in
+				Ostholstein. Seit über einem Jahrzehnt arbeiten wir in und an Bäumen – was als klassische
+				Baumpflege begann, hat sich zu einer ganzheitlichen Philosophie entwickelt.
+			</p>
+			<p class="text-base-content/70 leading-relaxed mb-6">
+				Wir betrachten den Baum nicht als Problem, sondern als lebenden Organismus, der Expertise
+				und Respekt verdient. Unser Team vereint handwerkliches Können in der Seilklettertechnik mit
+				wissenschaftlicher Diagnostik. Durch den Einsatz moderner Messmethoden wie Schalltomographie
+				und bioakustischer Sensoren treffen wir fundierte Entscheidungen – für die Sicherheit von
+				Menschen und den Erhalt wertvoller Bäume.
+			</p>
+
+			<div class="bg-base-200 rounded-xl p-6 border border-base-300">
+				<h3 class="text-lg mb-3">Standort</h3>
+				<p class="text-base-content/60 text-sm font-mono">
+					{addr.zip}
+					{addr.city} · {addr.regionShort}
+				</p>
+			</div>
+		</div>
+
+		<!-- Team-Gruppenbild -->
+		<div class="rounded-2xl overflow-hidden border border-base-300">
+			<Image
+				src={imgTeamGroup}
+				alt="Das gesamte Arbosphere-Team"
+				class="w-full h-auto object-cover"
+				widths={[400, 800, 1200]}
+				sizes="(max-width: 768px) 100vw, 50vw"
+			/>
+		</div>
+	</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     Sektion 2: Unser Team
+     ═══════════════════════════════════════════════════ -->
+<section class="max-w-6xl mx-auto px-6 py-16">
+	<div class="text-center mb-12">
+		<span
+			class="inline-block px-4 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-mono font-bold tracking-widest uppercase mb-4"
+		>
+			Das Team
+		</span>
+		<h2>Unser Team</h2>
+		<p class="text-base-content/60 mt-4 max-w-2xl mx-auto">
+			Hinter Arbosphere stehen engagierte Fachleute, die Leidenschaft für Bäume mit fundiertem
+			Wissen verbinden.
+		</p>
+	</div>
+
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+		{
+			teamMembers.map((member) => (
+				<TeamMemberCard
+					name={member.name}
+					role={member.role}
+					description={member.description}
+					imageSrc={member.imageSrc}
+					imageAlt={member.imageAlt}
+				/>
+			))
+		}
+	</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     Sektion 3: Unsere Werte
+     ═══════════════════════════════════════════════════ -->
+<section class="max-w-6xl mx-auto px-6 pt-16 pb-24">
+	<h2 class="text-center mb-12">Unsere Werte</h2>
+
+	<div class="grid md:grid-cols-3 gap-8">
+		<div class="text-center">
+			<div
+				class="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4"
+			>
+				<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
+				>
+			</div>
+			<h3 class="text-base">Qualität</h3>
+			<p class="text-sm text-base-content/60 mt-2">
+				Arbeit nach ZTV-Baumpflege und aktuellen Forschungsstandards.
+			</p>
+		</div>
+		<div class="text-center">
+			<div
+				class="w-14 h-14 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mx-auto mb-4"
+			>
+				<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
+				>
+			</div>
+			<h3 class="text-base">Zuverlässigkeit</h3>
+			<p class="text-sm text-base-content/60 mt-2">
+				Termingerecht, transparent und mit klarer Kommunikation.
+			</p>
+		</div>
+		<div class="text-center">
+			<div
+				class="w-14 h-14 rounded-full bg-accent/10 text-accent flex items-center justify-center mx-auto mb-4"
+			>
+				<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+					></path></svg
+				>
+			</div>
+			<h3 class="text-base">Nachhaltigkeit</h3>
+			<p class="text-sm text-base-content/60 mt-2">
+				Baumerhalt vor Fällung. Holzverwertung über das Sägewerk Timmdorf.
+			</p>
+		</div>
+	</div>
+</section>

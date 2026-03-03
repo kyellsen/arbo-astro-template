@@ -1,43 +1,58 @@
-# Astro Starter Kit: Minimal
+# Arbo Astro Template
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+A modern, static web template built with **Astro**, **Tailwind CSS v4**, and **DaisyUI v5** — optimized for performance, SEO, and the Arbo Corporate Identity.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> 🤖 **AI Agent?** Read **[AGENTS.md](AGENTS.md)** for rules and conventions.
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
-
 ```text
 /
-├── public/
+├── public/               # Static assets (images, favicon)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/       # Reusable UI components (PascalCase.astro)
+│   ├── layouts/          # Page wrappers (Layout.astro)
+│   ├── pages/            # File-based routing (index.astro)
+│   └── styles/           # Global CSS (global.css)
+├── scripts/
+│   ├── common.sh         # Shared shell utilities (logging, helpers)
+│   └── *.sh              # Per-recipe scripts (dev, build, qa, etc.)
+├── justfile              # Task runner (just --list for all commands)
+├── AGENTS.md             # AI agent rules (single source of truth)
+├── CLAUDE.md             # Redirect → AGENTS.md
+├── .gemini/              # Redirect → AGENTS.md (for Gemini/Cloud Code)
+├── .cursorrules          # Redirect → AGENTS.md (for Cursor)
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🛠 Tech Stack
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
+| Domain  | Technology                                                                     |
+| ------- | ------------------------------------------------------------------------------ |
+| Core    | [Astro](https://astro.build) (Static Site Generation)                          |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com) + [DaisyUI v5](https://daisyui.com) |
+| Fonts   | [Geist](https://vercel.com/font) & Geist Mono via Fontsource                   |
+| Package | `pnpm`                                                                         |
+| Tasks   | `just` task runner                                                             |
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the project root via [`just`](https://github.com/casey/just):
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| Command        | Action                                                  |
+| :------------- | :------------------------------------------------------ |
+| `just setup`   | Install dependencies + verify hooks                     |
+| `just dev`     | Start local dev server at `localhost:4321`              |
+| `just build`   | Build production site to `./dist/`                      |
+| `just preview` | Preview production build locally                        |
+| `just check`   | Run ESLint + Prettier check (read-only)                 |
+| `just fix`     | Auto-fix lint errors + format all files                 |
+| `just qa`      | Full QA: lint + format check + build                    |
+| `just clean`   | Remove `dist/`, `.astro/` (`--all` for `node_modules/`) |
+| `just doctor`  | Check environment health                                |
 
-## 👀 Want to learn more?
+## 📚 Learn More
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [Astro Documentation](https://docs.astro.build)
+- [Tailwind CSS v4 Docs](https://tailwindcss.com/docs)
+- [DaisyUI Components](https://daisyui.com/components)

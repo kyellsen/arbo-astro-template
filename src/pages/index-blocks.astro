@@ -1,0 +1,48 @@
+---
+// src/pages/index-blocks.astro — Startseite (Parallax-Block-Variante)
+// Um diese als Startseite zu aktivieren:
+//   1. index.astro → index-simple.astro
+//   2. index-blocks.astro → index.astro
+import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/sections/HeroSection.astro";
+import ServicesSection from "../components/sections/ServicesSection.astro";
+import AboutSection from "../components/sections/AboutSection.astro";
+import ContactSection from "../components/sections/ContactSection.astro";
+import ParallaxImage from "../components/ParallaxImage.astro";
+
+// Hero images from section metadata
+import { sectionMeta as servicesMeta } from "../components/sections/ServicesSection.astro";
+import { sectionMeta as aboutMeta } from "../components/sections/AboutSection.astro";
+import { sectionMeta as contactMeta } from "../components/sections/ContactSection.astro";
+---
+
+<Layout title="Start">
+	<!-- Hero -->
+	<div class="content-section">
+		<HeroSection />
+	</div>
+
+	<!-- Parallax: Services hero image -->
+	<ParallaxImage src={servicesMeta.heroImage} alt={servicesMeta.heroAlt} />
+
+	<!-- Services content -->
+	<div class="content-section">
+		<ServicesSection />
+	</div>
+
+	<!-- Parallax: About hero image -->
+	<ParallaxImage src={aboutMeta.heroImage} alt={aboutMeta.heroAlt} />
+
+	<!-- About content -->
+	<div class="content-section">
+		<AboutSection />
+	</div>
+
+	<!-- Parallax: Contact hero image -->
+	<ParallaxImage src={contactMeta.heroImage} alt={contactMeta.heroAlt} />
+
+	<!-- Contact content -->
+	<div class="content-section">
+		<ContactSection />
+	</div>
+</Layout>

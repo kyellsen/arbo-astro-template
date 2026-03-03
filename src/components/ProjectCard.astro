@@ -1,0 +1,74 @@
+---
+// src/components/ProjectCard.astro
+// Clickable card for the projects overview page.
+import { Image } from "astro:assets";
+
+interface Props {
+	slug: string;
+	title: string;
+	description: string;
+	date: Date;
+	tags: string[];
+	titleImage: ImageMetadata;
+}
+
+const { slug, title, description, date, tags, titleImage } = Astro.props;
+
+const formattedDate = date.toLocaleDateString("de-DE", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+---
+
+<a href={`/projects/${slug}`} class="project-card group block">
+	<article
+		class="bg-base-200 rounded-2xl border border-base-300 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col"
+	>
+		<!-- Title Image -->
+		<div class="aspect-video overflow-hidden">
+			<Image
+				src={titleImage}
+				alt={title}
+				class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+				widths={[400, 640, 800]}
+				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+			/>
+		</div>
+
+		<!-- Content -->
+		<div class="p-6 flex flex-col grow">
+			<h3 class="text-lg mb-2">{title}</h3>
+			<p class="text-sm text-base-content/60 leading-relaxed mb-4 grow">
+				{description}
+			</p>
+
+			<!-- Tags -->
+			<div class="flex flex-wrap gap-2 mb-3">
+				{tags.map((tag) => <span class="badge badge-outline badge-sm font-mono">{tag}</span>)}
+			</div>
+
+			<!-- Date -->
+			<div class="flex items-center gap-2 text-xs text-base-content/40 font-mono">
+				<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+					></path>
+				</svg>
+				<time datetime={date.toISOString().split("T")[0]}>
+					{formattedDate}
+				</time>
+			</div>
+		</div>
+	</article>
+</a>
+
+<style>
+	.project-card {
+		text-decoration: none;
+		color: inherit;
+	}
+</style>
