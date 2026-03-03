@@ -1,90 +1,86 @@
-// src/config/seo.ts — Zentrale SEO-Konfiguration
-// Alle SEO-relevanten Texte und Defaults an einem Ort pflegen.
-// Brand-Name und URL werden aus site.config.ts importiert (Single Source of Truth).
+// src/config/seo.ts — Central SEO configuration
+// All SEO-relevant texts and defaults in one place.
+// Brand name and URL are imported from site.config.ts (Single Source of Truth).
 import { siteConfig } from "../site.config";
 
-// ─── Typen ───────────────────────────────────────────────────────────
+// ─── Types ───────────────────────────────────────────────────────────
 export interface PageSeo {
-	/** Seitentitel (wird ins titleTemplate eingesetzt) */
+	/** Page title (inserted into titleTemplate) */
 	title: string;
-	/** Meta-Description für Suchmaschinen */
+	/** Meta description for search engines */
 	description: string;
-	/** Open-Graph-Bild (relativer Pfad ab Root, z.B. "/images/og-services.jpg") */
+	/** Open Graph image (relative path from root, e.g. "/images/og-services.jpg") */
 	ogImage?: string;
-	/** Open-Graph-Typ (default: "website") */
+	/** Open Graph type (default: "website") */
 	ogType?: "website" | "article";
-	/** Seite vor Indexierung schützen? */
+	/** Prevent indexing? */
 	noindex?: boolean;
 }
 
-// ─── Site-weite Defaults ─────────────────────────────────────────────
+// ─── Site-wide Defaults ─────────────────────────────────────────────
 export const seoConfig = {
-	/** Firmen- / Projektname (aus site.config.ts) */
+	/** Company / project name (from site.config.ts) */
 	name: siteConfig.brand.name,
 
-	/** Fallback-Titel, wenn kein Seitentitel gesetzt ist */
+	/** Fallback title when no page title is set */
 	defaultTitle: siteConfig.seo.defaultTitle,
 
 	/**
-	 * Template für den endgültigen <title>.
-	 * `%s` wird durch den Seitentitel ersetzt.
-	 * Beispiel: "Leistungen | Arbosphere"
+	 * Template for the final <title>.
+	 * `%s` is replaced by the page title.
+	 * Example: "Projects | Arbosphere"
 	 */
 	titleTemplate: siteConfig.seo.titleTemplate,
 
-	/** Fallback Meta-Description */
+	/** Fallback meta description */
 	defaultDescription: siteConfig.seo.defaultDescription,
 
 	/**
-	 * Basis-URL der Website (ohne Trailing-Slash).
-	 * Aus site.config.ts — muss mit `site` in astro.config.mjs übereinstimmen.
+	 * Base URL of the website (no trailing slash).
+	 * From site.config.ts — must match `site` in astro.config.mjs.
 	 */
 	siteUrl: siteConfig.brand.siteUrl,
 
-	/** Sprach- und Regions-Code für Open Graph */
+	/** Locale code for Open Graph */
 	locale: siteConfig.lang === "de" ? "de_DE" : "en_US",
 
-	/** Fallback-OG-Image (relativer Pfad ab Root) */
+	/** Fallback OG image (relative path from root) */
 	defaultOgImage: "/images/og-default.jpg",
 
-	/** Twitter/X @-Handle (leer lassen, wenn nicht vorhanden) */
+	/** Twitter/X @-handle (leave empty if not available) */
 	twitterHandle: "",
 } as const;
 
-// ─── Pro-Seite SEO-Daten ─────────────────────────────────────────────
-// Schlüssel = Pfad der Seite (mit führendem /, ohne Trailing-Slash).
-// Fehlende Einträge fallen auf die site-weiten Defaults zurück.
+// ─── Per-page SEO data ─────────────────────────────────────────────
+// Key = page path (leading /, no trailing slash).
+// Missing entries fall back to site-wide defaults.
 export const pageSeo: Record<string, PageSeo> = {
 	"/": {
-		title: "Start",
+		title: "Home",
 		description: siteConfig.seo.defaultDescription,
 	},
 	"/about": {
-		title: "Über uns",
-		description: `Erfahren Sie mehr über das Team, die Werte und die Geschichte von ${siteConfig.brand.name}.`,
+		title: "About",
+		description: `Learn about ${siteConfig.brand.name} — our vision, mission, and the technology we build for the arboricultural industry.`,
 	},
-	"/services": {
-		title: "Leistungen",
+	"/projects": {
+		title: "Projects",
 		description:
-			"Kronenpflege, Spezialfällung, Baumkontrolle, Gutachten und Standortberatung — unser Leistungsportfolio.",
-	},
-	"/contact": {
-		title: "Kontakt",
-		description: `Nehmen Sie Kontakt mit ${siteConfig.brand.name} auf — wir beraten Sie gerne zu allen Fragen rund um Ihre Bäume.`,
+			"Explore our open-source tools, sensor hardware, and research projects at the intersection of tree science and data technology.",
 	},
 	"/colors": {
-		title: "Farben – Arbo CI",
-		description: "Interne Farbpaletten-Referenz des Arbo Corporate Identity Systems.",
+		title: "Colors — Arbo CI",
+		description: "Internal color palette reference for the Arbo Corporate Identity system.",
 		noindex: true,
 	},
 };
 
 // ─── Structured Data (JSON-LD) ──────────────────────────────────────
-// Basis-Daten für das Organization / LocalBusiness Schema.
+// Base data for the Organization schema.
 // Reads from both seoConfig (SEO defaults) and siteConfig (contact data).
 export const organizationSchema = {
 	"@context": "https://schema.org",
-	"@type": "LocalBusiness",
+	"@type": "Organization",
 	name: seoConfig.name,
 	url: seoConfig.siteUrl,
 	description: seoConfig.defaultDescription,

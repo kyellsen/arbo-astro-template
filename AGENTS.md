@@ -121,6 +121,14 @@ All pages **must** meet **WCAG 2.1 AA** standards:
 
 ## 10. SEO — Infrastructure
 
+> [!CAUTION]
+> **TODO — GLOBAL NOINDEX ACTIVE:** The entire site is currently blocked from search engine indexing via two mechanisms:
+>
+> 1. **`src/components/SEOHead.astro`** — A hard-coded `<meta name="robots" content="noindex, nofollow">` tag is rendered on **every** page (the original per-page `noindex` prop is commented out).
+> 2. **`public/robots.txt`** — `Disallow: /` blocks all crawlers.
+>
+> **When going live**, revert both files to their original state (the old config is preserved as comments in each file).
+
 SEO metadata is managed centrally via `src/config/seo.ts` and rendered by `src/components/SEOHead.astro`.
 
 **Architecture:**

@@ -1,11 +1,10 @@
 ---
-// src/pages/index.astro — Startseite (einfache Variante)
-// Für die Parallax-Block-Variante: Datei umbenennen und index-blocks.astro → index.astro
+// src/pages/index.astro — Homepage
 import Layout from "../layouts/Layout.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
 import { heroContent } from "../data/hero";
 ---
 
-<Layout title="Start">
+<Layout title="Home">
 	<HeroSection {...heroContent} />
 </Layout>

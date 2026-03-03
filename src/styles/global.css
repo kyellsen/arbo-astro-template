@@ -6,114 +6,77 @@
 
 @plugin "daisyui" {
 	themes:
-		arbo-light --default,
-		arbo-dark;
+		arbo-cornflower-light,
+		arbo-cornflower-dark --default;
 }
 
 /* ──────────────────────────────────────────────────────────
-   Arbo CI Light Theme
-   Farben in OKLCH für perceptual uniformity.
+   Arbo CI Light Theme (Default / Baumpflege-OH)
+   Auskommentiert — Arbosphere nutzt arbo-cornflower-light.
    ────────────────────────────────────────────────────────── */
 
+/*
 @plugin "daisyui/theme" {
 	name: "arbo-light";
 	color-scheme: light;
-
-	/* Hintergründe */
 	--color-base-100: oklch(98% 0.005 160);
-	/* Kühles Off-White mit Emerald-Tint */
 	--color-base-200: oklch(92% 0.01 160);
-	/* Leichtes Grau für Cards/Sections */
 	--color-base-300: oklch(86% 0.012 160);
-	/* Borders & Trennlinien */
 	--color-base-content: oklch(25% 0.02 250);
-	/* Fast-Schwarz für Text */
-
-	/* Primärfarbe: Arbo Emerald (= palette emerald, 160°) */
 	--color-primary: oklch(52% 0.17 160);
 	--color-primary-content: oklch(98% 0 0);
-
-	/* Sekundärfarbe: Teal */
 	--color-secondary: oklch(61% 0.16 200);
-	/* Kühles Teal */
 	--color-secondary-content: oklch(98% 0 0);
-
-	/* Akzentfarbe: Gold */
 	--color-accent: oklch(75% 0.22 85);
-	/* Leuchtendes Gold */
 	--color-accent-content: oklch(25% 0.05 85);
-
-	/* Neutral */
 	--color-neutral: oklch(30% 0.02 250);
-	/* Dunkles Neutral für Badges etc. */
 	--color-neutral-content: oklch(95% 0.01 250);
-
-	/* Semantische Farben (= Oktett v3 Werte) */
 	--color-info: oklch(65% 0.15 245);
-	/* = palette cornflower */
 	--color-info-content: oklch(98% 0 0);
 	--color-success: oklch(65% 0.16 130);
-	/* = palette chartreuse */
 	--color-success-content: oklch(25% 0.05 130);
 	--color-warning: oklch(75% 0.22 85);
-	/* = palette gold */
 	--color-warning-content: oklch(25% 0.05 85);
 	--color-error: oklch(58% 0.22 25);
-	/* = palette scarlet */
 	--color-error-content: oklch(98% 0 0);
-
 	--radius-box: 1rem;
 	--border: 1px;
 }
+*/
 
 /* ──────────────────────────────────────────────────────────
-   Arbo CI Dark Theme
+   Arbo CI Dark Theme (Default / Baumpflege-OH)
+   Auskommentiert — Arbosphere nutzt arbo-cornflower-dark.
    ────────────────────────────────────────────────────────── */
 
+/*
 @plugin "daisyui/theme" {
 	name: "arbo-dark";
 	color-scheme: dark;
-
-	/* Hintergründe: Tiefes Emerald-Grau */
 	--color-base-100: oklch(18% 0.015 160);
 	--color-base-200: oklch(13% 0.015 160);
 	--color-base-300: oklch(29% 0.02 160);
 	--color-base-content: oklch(90% 0.01 160);
-	/* Helles, kühles Weiß */
-
-	/* Primärfarbe: Arbo Emerald (= palette emerald, dark) */
 	--color-primary: oklch(65% 0.18 160);
 	--color-primary-content: oklch(18% 0.05 160);
-
-	/* Sekundärfarbe: Teal */
 	--color-secondary: oklch(70% 0.14 200);
 	--color-secondary-content: oklch(18% 0.05 200);
-
-	/* Akzentfarbe: Gold */
 	--color-accent: oklch(82% 0.17 85);
 	--color-accent-content: oklch(20% 0.05 85);
-
-	/* Neutral */
 	--color-neutral: oklch(35% 0.02 250);
 	--color-neutral-content: oklch(90% 0.01 250);
-
-	/* Semantische Farben (= Oktett v3, dark) */
 	--color-info: oklch(73% 0.1 245);
-	/* = cornflower dark */
 	--color-info-content: oklch(18% 0.05 245);
 	--color-success: oklch(73% 0.13 130);
-	/* = chartreuse dark */
 	--color-success-content: oklch(18% 0.05 130);
 	--color-warning: oklch(82% 0.17 85);
-	/* = gold dark */
 	--color-warning-content: oklch(20% 0.05 85);
 	--color-error: oklch(68% 0.17 25);
-	/* = scarlet dark */
 	--color-error-content: oklch(18% 0.05 25);
-
 	--radius-box: 1rem;
 	--border: 1px;
 }
+*/
 
 /* ──────────────────────────────────────────────────────────
    Additional Theme Pairs (for other brands)
@@ -245,19 +208,18 @@
 }
 */
 
-/* ── Arbosphere (Primary: Chartreuse 130° / Secondary: Emerald 160° / Accent: Gold 85°) ── */
+/* ── Arbosphere (Primary: Cornflower 245° / Secondary: Magenta 335° / Accent: Gold 85°) ── */
 
-/*
 @plugin "daisyui/theme" {
-	name: "arbo-chartreuse-light";
+	name: "arbo-cornflower-light";
 	color-scheme: light;
-	--color-base-100: oklch(98% 0.005 130);
-	--color-base-200: oklch(92% 0.01 130);
-	--color-base-300: oklch(86% 0.012 130);
+	--color-base-100: oklch(98% 0.005 245);
+	--color-base-200: oklch(92% 0.01 245);
+	--color-base-300: oklch(86% 0.012 245);
 	--color-base-content: oklch(25% 0.02 250);
-	--color-primary: oklch(65% 0.16 130);
+	--color-primary: oklch(65% 0.15 245);
 	--color-primary-content: oklch(98% 0 0);
-	--color-secondary: oklch(52% 0.17 160);
+	--color-secondary: oklch(65% 0.2 335);
 	--color-secondary-content: oklch(98% 0 0);
 	--color-accent: oklch(75% 0.22 85);
 	--color-accent-content: oklch(25% 0.05 85);
@@ -274,20 +236,18 @@
 	--radius-box: 1rem;
 	--border: 1px;
 }
-*/
 
-/*
 @plugin "daisyui/theme" {
-	name: "arbo-chartreuse-dark";
+	name: "arbo-cornflower-dark";
 	color-scheme: dark;
-	--color-base-100: oklch(18% 0.015 130);
-	--color-base-200: oklch(13% 0.015 130);
-	--color-base-300: oklch(29% 0.02 130);
-	--color-base-content: oklch(90% 0.01 130);
-	--color-primary: oklch(73% 0.13 130);
-	--color-primary-content: oklch(18% 0.05 130);
-	--color-secondary: oklch(65% 0.18 160);
-	--color-secondary-content: oklch(18% 0.05 160);
+	--color-base-100: oklch(18% 0.015 245);
+	--color-base-200: oklch(13% 0.015 245);
+	--color-base-300: oklch(29% 0.02 245);
+	--color-base-content: oklch(90% 0.01 245);
+	--color-primary: oklch(73% 0.1 245);
+	--color-primary-content: oklch(18% 0.05 245);
+	--color-secondary: oklch(80% 0.15 335);
+	--color-secondary-content: oklch(18% 0.05 335);
 	--color-accent: oklch(82% 0.17 85);
 	--color-accent-content: oklch(20% 0.05 85);
 	--color-neutral: oklch(35% 0.02 250);
@@ -303,7 +263,6 @@
 	--radius-box: 1rem;
 	--border: 1px;
 }
-*/
 
 /* ── Silvasonic (Primary: Teal 200° / Secondary: Cornflower 245° / Accent: Chartreuse 130°) ── */
 
@@ -438,6 +397,153 @@ html {
 }
 
 /* ──────────────────────────────────────────────────────────
+   Prose — Markdown Content Styling
+   ────────────────────────────────────────────────────────── */
+
+.prose {
+	color: var(--color-base-content);
+	line-height: 1.8;
+}
+
+/* Headings inside prose */
+.prose h2 {
+	margin-top: 2.5em;
+	margin-bottom: 0.8em;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.08);
+}
+
+.prose h2:first-child {
+	margin-top: 0;
+}
+
+.prose h3 {
+	margin-top: 2em;
+	margin-bottom: 0.6em;
+}
+
+/* Paragraphs */
+.prose p {
+	margin-bottom: 1.25em;
+}
+
+.prose p:last-child {
+	margin-bottom: 0;
+}
+
+/* Lists */
+.prose ul,
+.prose ol {
+	margin-top: 0.75em;
+	margin-bottom: 1.5em;
+	padding-left: 1.5em;
+}
+
+.prose ul {
+	list-style-type: disc;
+}
+
+.prose ol {
+	list-style-type: decimal;
+}
+
+.prose li {
+	margin-bottom: 0.5em;
+	line-height: 1.7;
+}
+
+.prose li strong {
+	color: var(--color-base-content);
+}
+
+/* Tables */
+.prose table {
+	width: 100%;
+	margin-top: 1em;
+	margin-bottom: 2em;
+	border-collapse: collapse;
+	font-size: 0.9em;
+}
+
+.prose thead th {
+	text-align: left;
+	font-weight: 600;
+	color: var(--color-base-content);
+	padding: 0.75em 1em;
+	border-bottom: 2px solid oklch(from var(--color-primary) l c h / 0.3);
+	white-space: nowrap;
+}
+
+.prose tbody td {
+	padding: 0.6em 1em;
+	border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.06);
+	vertical-align: top;
+}
+
+.prose tbody tr:hover {
+	background-color: oklch(from var(--color-base-content) l c h / 0.03);
+}
+
+/* Inline code */
+.prose code:not(pre code) {
+	background-color: oklch(from var(--color-primary) l c h / 0.08);
+	color: var(--color-primary);
+	padding: 0.15em 0.4em;
+	border-radius: 0.3em;
+	font-size: 0.875em;
+	font-weight: 500;
+}
+
+/* Code blocks */
+.prose pre {
+	background-color: oklch(from var(--color-base-100) l c h / 0.6);
+	border: 1px solid oklch(from var(--color-base-content) l c h / 0.08);
+	border-radius: 0.75em;
+	padding: 1.25em;
+	margin-top: 1em;
+	margin-bottom: 1.5em;
+	overflow-x: auto;
+	font-size: 0.875em;
+	line-height: 1.7;
+}
+
+/* Blockquotes */
+.prose blockquote {
+	border-left: 3px solid var(--color-primary);
+	padding: 0.5em 1.25em;
+	margin: 1.5em 0;
+	color: oklch(from var(--color-base-content) l c h / 0.8);
+	font-style: italic;
+	background-color: oklch(from var(--color-primary) l c h / 0.03);
+	border-radius: 0 0.5em 0.5em 0;
+}
+
+/* Horizontal rules */
+.prose hr {
+	border: none;
+	border-top: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+	margin: 2.5em 0;
+}
+
+/* Links in prose */
+.prose a {
+	color: var(--color-primary);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	transition: color 0.2s ease;
+}
+
+.prose a:hover {
+	color: var(--color-secondary);
+}
+
+/* Strong text */
+.prose strong {
+	font-weight: 600;
+	color: var(--color-base-content);
+}
+
+/* ──────────────────────────────────────────────────────────
    Modern UI/UX Background Utilities (Gradients & Glows)
    ────────────────────────────────────────────────────────── */
 
@@ -540,19 +646,40 @@ html {
 .glow-card::after {
 	content: "";
 	position: absolute;
-	top: -20px;
-	right: -20px;
-	width: 60%;
-	height: 60%;
+	top: -30px;
+	right: -30px;
+	width: 75%;
+	height: 75%;
 	background: radial-gradient(
 		circle,
-		oklch(from var(--color-primary) l c h / 0.15) 0%,
-		transparent 60%
+		oklch(from var(--color-primary) l c h / 0.3) 0%,
+		oklch(from var(--color-primary) l c h / 0.1) 40%,
+		transparent 70%
 	);
 	z-index: -1;
-	filter: blur(24px);
+	filter: blur(36px);
 	pointer-events: none;
 	border-radius: inherit;
+}
+
+/* 5b. Card Hover Glow — modern tech glow on hover
+   Set --glow-color on the element (inline style) to customise. */
+.card-glow {
+	--glow-color: var(--color-primary);
+	transition:
+		box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-glow:hover {
+	box-shadow:
+		0 0 20px oklch(from var(--glow-color) l c h / 0.5),
+		0 0 50px oklch(from var(--glow-color) l c h / 0.25),
+		0 0 100px oklch(from var(--glow-color) l c h / 0.12),
+		0 0 150px oklch(from var(--glow-color) l c h / 0.05),
+		inset 0 1px 0 oklch(100% 0 0 / 0.12);
+	border-color: oklch(from var(--glow-color) l c h / 0.6);
 }
 
 /* 5. Gradient Border (Sleek Tech) */
@@ -577,6 +704,18 @@ html {
 		transparent 50%,
 		oklch(from var(--color-secondary) l c h / 0.3)
 	);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Hero Gradient Text
+   ────────────────────────────────────────────────────────── */
+
+.hero-gradient-text {
+	background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -658,38 +797,6 @@ html {
 			oklch(from var(--color-secondary) l c h / 0.05),
 			transparent 70%
 		);
-}
-
-/* ──────────────────────────────────────────────────────────
-   Parallax Image Windows
-   Uses clip-path: inset(0) so position: fixed is clipped to
-   the parent container — works on desktop AND mobile (iOS).
-   ────────────────────────────────────────────────────────── */
-
-.parallax-window {
-	position: relative;
-	overflow: hidden;
-	clip-path: inset(0);
-	-webkit-clip-path: inset(0);
-}
-
-.parallax-image {
-	position: fixed;
-	inset: 0;
-	z-index: -1;
-}
-
-.parallax-image__img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-/* Content sections need an opaque background to slide over the parallax images */
-.content-section {
-	position: relative;
-	z-index: 1;
-	background-color: var(--color-base-100);
 }
 
 /* ──────────────────────────────────────────────────────────

@@ -41,9 +41,14 @@ const descAlignClass =
 <div class:list={[alignClass, marginBottom]}>
 	{
 		headline && (
-			<Tag>
+			<Tag class:list={[Tag === "h1" && "hero-gradient-text"]}>
 				{headline}
-				{highlightedText && <span class="text-primary"> {highlightedText}</span>}
+				{highlightedText &&
+					(Tag === "h1" ? (
+						<span> {highlightedText}</span>
+					) : (
+						<span class="text-primary"> {highlightedText}</span>
+					))}
 			</Tag>
 		)
 	}

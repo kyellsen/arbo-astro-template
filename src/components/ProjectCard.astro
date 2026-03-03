@@ -9,12 +9,15 @@ interface Props {
 	description: string;
 	date: Date;
 	tags: string[];
-	titleImage: ImageMetadata;
+	titleImage?: ImageMetadata;
+	/** Palette color name from CSS custom properties (e.g. 'gold', 'magenta') */
+	color?: string;
 }
 
-const { slug, title, description, date, tags, titleImage } = Astro.props;
+const { slug, title, description, date, tags, titleImage, color } = Astro.props;
+const colorVar = color ? `var(--color-${color})` : "var(--color-primary)";
 
-const formattedDate = date.toLocaleDateString("de-DE", {
+const formattedDate = date.toLocaleDateString("en-US", {
 	year: "numeric",
 	month: "long",
 	day: "numeric",
@@ -23,18 +26,45 @@ const formattedDate = date.toLocaleDateString("de-DE", {
 
 <a href={`/projects/${slug}`} class="project-card group block">
 	<article
-		class="apple-glass rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col"
+		class="apple-glass card-glow rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 h-full flex flex-col"
+		style={`--glow-color: ${colorVar};`}
 	>
-		<!-- Title Image -->
-		<div class="aspect-video overflow-hidden">
-			<Image
-				src={titleImage}
-				alt={title}
-				class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-				widths={[400, 640, 800]}
-				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-			/>
-		</div>
+		<!-- Title Image or Gradient Placeholder -->
+		{
+			titleImage ? (
+				<div class="aspect-video overflow-hidden">
+					<Image
+						src={titleImage}
+						alt={title}
+						class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+						widths={[400, 640, 800]}
+						sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+					/>
+				</div>
+			) : (
+				<div
+					class="aspect-video flex items-center justify-center"
+					style={`background: linear-gradient(135deg, oklch(from ${colorVar} l c h / 0.15), oklch(from ${colorVar} l c h / 0.05));`}
+				>
+					<svg
+						class="w-12 h-12 opacity-30"
+						style={`color: ${colorVar};`}
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						aria-hidden="true"
+						focusable="false"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="1.5"
+							d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+						/>
+					</svg>
+				</div>
+			)
+		}
 
 		<!-- Content -->
 		<div class="p-6 flex flex-col grow">
@@ -47,7 +77,10 @@ const formattedDate = date.toLocaleDateString("de-DE", {
 			<div class="flex flex-wrap gap-2 mb-3">
 				{
 					tags.map((tag) => (
-						<span class="badge badge-outline badge-sm font-mono text-secondary border-secondary/30">
+						<span
+							class="badge badge-outline badge-sm font-mono"
+							style={`color: ${colorVar}; border-color: oklch(from ${colorVar} l c h / 0.3);`}
+						>
 							{tag}
 						</span>
 					))
@@ -55,8 +88,18 @@ const formattedDate = date.toLocaleDateString("de-DE", {
 			</div>
 
 			<!-- Date -->
-			<div class="flex items-center gap-2 text-xs text-secondary/70 font-mono mt-auto">
-				<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<div
+				class="flex items-center gap-2 text-xs font-mono mt-auto"
+				style={`color: oklch(from ${colorVar} l c h / 0.7);`}
+			>
+				<svg
+					class="w-3.5 h-3.5"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					aria-hidden="true"
+					focusable="false"
+				>
 					<path
 						stroke-linecap="round"
 						stroke-linejoin="round"

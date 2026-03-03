@@ -1,9 +1,5 @@
 // src/site.config.ts — Central site configuration
 // Single Source of Truth for brand, theme, navigation, and contact data.
-// When cloning this template for a new brand:
-//   1. Update brand, theme, lang, navigation
-//   2. Update company, contact, social, hours
-//   3. Adjust theme pair in global.css (uncomment the matching theme)
 
 export const siteConfig = {
 	// ── Brand ──────────────────────────────────────────────────────────
@@ -13,7 +9,7 @@ export const siteConfig = {
 		/** Single letter for the logo badge */
 		logoInitial: "A",
 		/** Subtitle shown next to the logo (optional) */
-		logoSubtitle: "Template",
+		logoSubtitle: "Environmental Technology",
 		/** Production URL (no trailing slash) — must match astro.config.mjs site */
 		siteUrl: "https://arbosphere.de",
 	},
@@ -21,37 +17,34 @@ export const siteConfig = {
 	// ── SEO Defaults ───────────────────────────────────────────────────
 	seo: {
 		/** Default title for pages without a specific title */
-		defaultTitle: "Arbosphere — Professionelle Baumpflege",
+		defaultTitle: "Arbosphere — Environmental Data Science & Tree Technology",
 		/** Title template (e.g., "%s | Arbosphere") */
 		titleTemplate: "%s | Arbosphere",
 		/** Default description for pages without a specific description */
 		defaultDescription:
-			"Arbosphere — Ihr Partner für professionelle Baumpflege, Baumkontrolle und Gutachten in der Region.",
+			"Arbosphere connects environmental data science, tree management, and instrumentation technology. Open-source tools, sensor hardware, and expert consulting for the arboricultural industry.",
 	},
 
 	// ── Theme ──────────────────────────────────────────────────────────
 	/** DaisyUI theme names as defined in global.css */
 	theme: {
-		light: "arbo-light",
-		dark: "arbo-dark",
+		light: "arbo-cornflower-light",
+		dark: "arbo-cornflower-dark",
 	},
 
 	// ── Language ───────────────────────────────────────────────────────
 	/** HTML lang attribute */
-	lang: "de" as const,
+	lang: "en" as const,
 
 	// ── Navigation ────────────────────────────────────────────────────
-	/** Main navigation items rendered in Header + Mobile Nav.
-	 *  Remove or add entries as needed. External links open in new tab. */
+	/** Main navigation items rendered in Header + Mobile Nav. */
 	navigation: [
-		{ label: "Start", href: "/" },
-		{ label: "Leistungen", href: "/services" },
-		{ label: "Projekte", href: "/projects" },
-		{ label: "Über uns", href: "/about" },
-		{ label: "Kontakt", href: "/contact" },
+		{ label: "Home", href: "/" },
+		{ label: "Projects", href: "/projects" },
+		{ label: "About", href: "/about" },
 	] as const,
 
-	// ── Firmen- & Kontaktdaten (Single Source of Truth) ───────────────
+	// ── Company & Contact Data (Single Source of Truth) ──────────────
 
 	company: {
 		name: "Arbosphere",
@@ -61,28 +54,23 @@ export const siteConfig = {
 			street: "Lindenweg 4",
 			zip: "23714",
 			city: "Timmdorf",
-			region: "Ostholstein, Schleswig-Holstein",
+			region: "Schleswig-Holstein, Germany",
 			regionShort: "Holsteinische Schweiz · Ostholstein",
 		},
 	},
 
 	contact: {
-		email: "mail@kyelljensen.de",
-		phone: "+4917634503823",
-		phoneDisplay: "0176 34503823",
-		whatsapp: "https://wa.me/4917634503823",
-		signal: "https://signal.me/#p/+4917634503823",
+		email: "io@arbosphere.de",
 	},
 
 	social: {
 		github: "https://github.com/kyellsen",
-		instagram: "https://instagram.com/kyellsen",
 	},
 
 	hours: [
-		{ days: "Montag – Freitag", time: "08:00 – 17:00" },
-		{ days: "Samstag", time: "nach Vereinbarung" },
-		{ days: "Sonntag", time: "geschlossen" },
+		{ days: "Monday – Friday", time: "08:00 – 17:00" },
+		{ days: "Saturday", time: "by appointment" },
+		{ days: "Sunday", time: "closed" },
 	] as const,
 };
 

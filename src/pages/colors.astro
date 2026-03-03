@@ -15,8 +15,8 @@ import Layout from "../layouts/Layout.astro";
 			</span>
 			<h1>Arbo CI — Farbpalette</h1>
 			<p class="text-base-content/70 mt-4 max-w-2xl">
-				9 chromatische + 1 achromatische Farbe, definiert in OKLCH. Base-Hintergründe auf Hue 160°
-				(= Emerald) abgestimmt. Nutze den Toggle oben rechts für Light / Dark Mode.
+				9 chromatische + 1 achromatische Farbe, definiert in OKLCH. Base-Hintergründe auf Hue 245°
+				(= Cornflower) abgestimmt. Nutze den Toggle oben rechts für Light / Dark Mode.
 			</p>
 		</div>
 
@@ -71,10 +71,10 @@ import Layout from "../layouts/Layout.astro";
 					<span class="text-primary-content font-mono text-sm font-bold">primary</span>
 				</div>
 				<div class="p-4 bg-base-100">
-					<p class="font-bold">Arbo Emerald</p>
-					<p class="text-xs text-base-content/50 font-mono mt-1">Light: oklch(52% 0.17 160)</p>
-					<p class="text-xs text-base-content/50 font-mono">Dark: oklch(65% 0.18 160)</p>
-					<p class="text-xs text-base-content/40 mt-1">= palette emerald · Hue 160°</p>
+					<p class="font-bold">Cornflower</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">Light: oklch(65% 0.15 245)</p>
+					<p class="text-xs text-base-content/50 font-mono">Dark: oklch(73% 0.1 245)</p>
+					<p class="text-xs text-base-content/40 mt-1">= palette cornflower · Hue 245°</p>
 					<div class="mt-3 flex gap-2">
 						<span class="badge badge-primary">Badge</span>
 						<span class="badge badge-primary badge-outline">Outline</span>
@@ -88,10 +88,10 @@ import Layout from "../layouts/Layout.astro";
 					<span class="text-secondary-content font-mono text-sm font-bold">secondary</span>
 				</div>
 				<div class="p-4 bg-base-100">
-					<p class="font-bold">Teal</p>
-					<p class="text-xs text-base-content/50 font-mono mt-1">Light: oklch(61% 0.16 200)</p>
-					<p class="text-xs text-base-content/50 font-mono">Dark: oklch(70% 0.14 200)</p>
-					<p class="text-xs text-base-content/40 mt-1">= palette teal · Hue 200°</p>
+					<p class="font-bold">Magenta</p>
+					<p class="text-xs text-base-content/50 font-mono mt-1">Light: oklch(65% 0.20 335)</p>
+					<p class="text-xs text-base-content/50 font-mono">Dark: oklch(80% 0.15 335)</p>
+					<p class="text-xs text-base-content/40 mt-1">= palette magenta · Hue 335°</p>
 					<div class="mt-3 flex gap-2">
 						<span class="badge badge-secondary">Badge</span>
 						<span class="badge badge-secondary badge-outline">Outline</span>
@@ -194,7 +194,7 @@ import Layout from "../layouts/Layout.astro";
 			Neutral & Base
 		</h2>
 		<p class="text-base-content/60 text-sm mb-6 max-w-2xl">
-			Hintergründe auf Hue 160° (Emerald) gestimmt, minimale Chroma für warmen, natürlichen Ton.
+			Hintergründe auf Hue 245° (Cornflower) gestimmt, minimale Chroma für kühlen, technischen Ton.
 		</p>
 		<div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-16">
 			<div class="rounded-xl border border-base-300 overflow-hidden">
@@ -440,7 +440,7 @@ import Layout from "../layouts/Layout.astro";
 				<div class="p-3 bg-base-100">
 					<p class="font-bold text-xs">Emerald</p>
 					<p class="text-xs text-base-content/50 font-mono mt-0.5">52% 0.17 160°</p>
-					<p class="text-xs text-base-content/40">= primary</p>
+					<p class="text-xs text-base-content/40"></p>
 				</div>
 			</div>
 
@@ -453,7 +453,7 @@ import Layout from "../layouts/Layout.astro";
 				<div class="p-3 bg-base-100">
 					<p class="font-bold text-xs">Teal</p>
 					<p class="text-xs text-base-content/50 font-mono mt-0.5">61% 0.16 200°</p>
-					<p class="text-xs text-base-content/40">= secondary</p>
+					<p class="text-xs text-base-content/40"></p>
 				</div>
 			</div>
 
@@ -466,7 +466,7 @@ import Layout from "../layouts/Layout.astro";
 				<div class="p-3 bg-base-100">
 					<p class="font-bold text-xs">Cornflower</p>
 					<p class="text-xs text-base-content/50 font-mono mt-0.5">65% 0.15 245°</p>
-					<p class="text-xs text-base-content/40">= info</p>
+					<p class="text-xs text-base-content/40">= primary · info</p>
 				</div>
 			</div>
 
@@ -491,6 +491,7 @@ import Layout from "../layouts/Layout.astro";
 				<div class="p-3 bg-base-100">
 					<p class="font-bold text-xs">Magenta</p>
 					<p class="text-xs text-base-content/50 font-mono mt-0.5">65% 0.20 335°</p>
+					<p class="text-xs text-base-content/40">= secondary</p>
 				</div>
 			</div>
 
@@ -515,11 +516,11 @@ import Layout from "../layouts/Layout.astro";
 		{ hue: 55, name: "Amber", color: "oklch(55% 0.14 55)", role: "" },
 		{ hue: 85, name: "Gold", color: "oklch(75% 0.22 85)", role: "accent" },
 		{ hue: 130, name: "Chartreuse", color: "oklch(65% 0.16 130)", role: "success" },
-		{ hue: 160, name: "Emerald", color: "oklch(52% 0.17 160)", role: "primary" },
-		{ hue: 200, name: "Teal", color: "oklch(61% 0.16 200)", role: "secondary" },
-		{ hue: 245, name: "Cornflower", color: "oklch(65% 0.15 245)", role: "info" },
+		{ hue: 160, name: "Emerald", color: "oklch(52% 0.17 160)", role: "" },
+		{ hue: 200, name: "Teal", color: "oklch(61% 0.16 200)", role: "" },
+		{ hue: 245, name: "Cornflower", color: "oklch(65% 0.15 245)", role: "primary" },
 		{ hue: 290, name: "Violet", color: "oklch(60% 0.18 290)", role: "" },
-		{ hue: 335, name: "Magenta", color: "oklch(65% 0.20 335)", role: "" },
+		{ hue: 335, name: "Magenta", color: "oklch(65% 0.20 335)", role: "secondary" },
 	];
 	const CX = 230,
 		CY = 230,

@@ -51,7 +51,22 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${seoConfig.siteUrl}$
 
 <!-- Basis-Meta -->
 <meta name="description" content={description} />
+
+<!--
+  ╔═══════════════════════════════════════════════════════════════════════╗
+  ║  TODO: GLOBAL NOINDEX — VORLÄUFIG / TEMPORARY                      ║
+  ║  Die gesamte Seite wird aktuell für Suchmaschinen gesperrt.         ║
+  ║  Sobald die Seite offiziell live gehen soll, diese Zeile ENTFERNEN  ║
+  ║  und die ursprüngliche Zeile darunter wieder aktivieren.            ║
+  ║  See also: public/robots.txt (Disallow: /) and AGENTS.md           ║
+  ╚═══════════════════════════════════════════════════════════════════════╝
+-->
+<meta name="robots" content="noindex, nofollow" />
+
+<!-- Original per-page noindex (re-enable when going live):
 {noindex && <meta name="robots" content="noindex, nofollow" />}
+-->
+
 <link rel="canonical" href={canonicalUrl} />
 
 <!-- Open Graph -->

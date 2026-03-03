@@ -1,5 +1,5 @@
 ---
-// src/components/sections/HeroSection.astro — Start-Hero (reusable)
+// src/components/sections/HeroSection.astro — Start Hero (reusable)
 // Content is passed via props from the page, sourced from src/data/hero.ts.
 import type { HeroContent } from "../../data/hero";
 import SectionHeader from "../SectionHeader.astro";
@@ -41,37 +41,76 @@ const { badge, headline, highlightedText, description, ctas, features } = Astro.
 		</div>
 	</SectionHeader>
 
-	<!-- Kurzvorstellung -->
-	<div class="grid md:grid-cols-3 gap-8 mt-16">
+	<!-- Domain Cards -->
+	<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
 		{
-			features.map((feature) => (
-				<div class="apple-glass rounded-2xl p-8 text-center">
-					<div
+			features.map((feature) => {
+				const isExternal = feature.href?.startsWith("http");
+				const Tag = feature.href ? "a" : "div";
+				const linkProps = feature.href
+					? {
+							href: feature.href,
+							...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {}),
+						}
+					: {};
+				return (
+					<Tag
 						class:list={[
-							"w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4",
-							`bg-${feature.color}/10 text-${feature.color}`,
+							"apple-glass card-glow rounded-2xl p-8 text-center block",
+							feature.href &&
+								"transition-transform hover:scale-[1.03] cursor-pointer no-underline text-inherit",
 						]}
+						style={`--glow-color: var(--color-${feature.color});`}
+						{...linkProps}
 					>
-						<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d={feature.iconPath}
-							/>
-						</svg>
-					</div>
-					<h3>{feature.title}</h3>
-					<p class="text-sm text-base-content/60 mt-2">{feature.description}</p>
-				</div>
-			))
+						<div
+							class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4"
+							style={`background: oklch(from var(--color-${feature.color}) l c h / 0.12); color: var(--color-${feature.color});`}
+						>
+							<svg
+								class="w-7 h-7"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								aria-hidden="true"
+								focusable="false"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d={feature.iconPath}
+								/>
+							</svg>
+						</div>
+						<h3>{feature.title}</h3>
+						<p class="text-sm text-base-content/60 mt-2">{feature.description}</p>
+					</Tag>
+				);
+			})
 		}
 	</div>
 
-	<!-- Call To Action -->
-	<div class="mt-16 flex justify-center">
-		<a href={`tel:${siteConfig.contact.phone}`} class="btn btn-primary btn-lg rounded-xl shadow-lg">
-			Jetzt telefonisch Besichtigungstermin vereinbaren
+	<!-- GitHub CTA -->
+	<div class="flex justify-center mt-16">
+		<a
+			href={siteConfig.social.github}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="btn btn-lg btn-primary rounded-xl shadow-lg gap-3 text-lg px-10"
+		>
+			<svg
+				class="w-6 h-6"
+				fill="currentColor"
+				viewBox="0 0 24 24"
+				aria-hidden="true"
+				focusable="false"
+			>
+				<path
+					d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+				></path>
+			</svg>
+			Explore on GitHub
 		</a>
 	</div>
 </section>

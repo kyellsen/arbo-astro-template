@@ -1,83 +1,27 @@
 ---
-// src/components/sections/AboutSection.astro — Über uns (reusable)
-// Content is passed via props from the page, sourced from src/data/about.ts and src/data/team.ts.
-import { Image } from "astro:assets";
-import TeamMemberCard from "../TeamMemberCard.astro";
+// src/components/sections/AboutSection.astro — About (reusable)
+// Content is passed via props from the page, sourced from src/data/about.ts.
 import type { AboutContent } from "../../data/about";
-import type { TeamMember } from "../../data/team";
 import SectionHeader from "../SectionHeader.astro";
-import type { ImageMetadata } from "astro";
 
-interface Props extends AboutContent {
-	teamMembers: TeamMember[];
-	eagerImage?: boolean; // For LCP optimization if section is above the fold
-}
+interface Props extends AboutContent {}
 
-const {
-	headline,
-	paragraphs,
-	teamGroupImage,
-	teamGroupImageAlt,
-	teamHeadline,
-	teamDescription,
-	valuesHeadline,
-	values,
-	teamMembers,
-	eagerImage = false,
-} = Astro.props;
+const { headline, paragraphs, valuesHeadline, values } = Astro.props;
 ---
 
 <!-- ═══════════════════════════════════════════════════
-     Sektion 1: Über den Betrieb
+     Section 1: About the Organization
      ═══════════════════════════════════════════════════ -->
 <section class="max-w-6xl mx-auto px-6 pt-24 pb-16 reveal-on-scroll">
 	<SectionHeader headline={headline} />
 
-	<div class="grid md:grid-cols-2 gap-12 items-start">
-		<!-- Text -->
-		<div>
-			{paragraphs.map((p) => <p class="text-base-content/60 leading-relaxed mb-6">{p}</p>)}
-		</div>
-
-		<!-- Team-Gruppenbild -->
-		<div class="rounded-2xl overflow-hidden border border-base-300">
-			<Image
-				src={teamGroupImage}
-				alt={teamGroupImageAlt}
-				class="w-full h-auto object-cover"
-				widths={[400, 800, 1200]}
-				sizes="(max-width: 768px) 100vw, 50vw"
-				loading={eagerImage ? "eager" : "lazy"}
-				fetchpriority={eagerImage ? "high" : "auto"}
-			/>
-		</div>
+	<div class="max-w-3xl">
+		{paragraphs.map((p) => <p class="text-base-content/60 leading-relaxed mb-6">{p}</p>)}
 	</div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     Sektion 2: Unser Team
-     ═══════════════════════════════════════════════════ -->
-<section class="max-w-6xl mx-auto px-6 py-16">
-	<SectionHeader headline={teamHeadline} description={teamDescription} align="center" />
-
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-		{
-			teamMembers.map((member) => (
-				<TeamMemberCard
-					name={member.name}
-					role={member.role}
-					description={member.description}
-					imageSrc={member.imageSrc}
-					imageAlt={member.imageAlt}
-					color="primary"
-				/>
-			))
-		}
-	</div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     Sektion 3: Unsere Werte
+     Section 2: Our Principles
      ═══════════════════════════════════════════════════ -->
 <section class="max-w-6xl mx-auto px-6 pt-16 pb-24">
 	<h2 class="text-center mb-12">{valuesHeadline}</h2>
@@ -87,12 +31,17 @@ const {
 			values.map((value) => (
 				<div class="apple-glass rounded-2xl p-8 text-center">
 					<div
-						class:list={[
-							"w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4",
-							`bg-${value.color}/10 text-${value.color}`,
-						]}
+						class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4"
+						style={`background: oklch(from var(--color-${value.color}) l c h / 0.12); color: var(--color-${value.color});`}
 					>
-						<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<svg
+							class="w-7 h-7"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							aria-hidden="true"
+							focusable="false"
+						>
 							<path
 								stroke-linecap="round"
 								stroke-linejoin="round"

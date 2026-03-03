@@ -37,7 +37,7 @@ function isActive(href: string): boolean {
 		</a>
 
 		<!-- Desktop Navigation -->
-		<nav class="hidden md:flex gap-8 font-medium text-base" aria-label="Hauptnavigation">
+		<nav class="hidden md:flex gap-8 font-medium text-base" aria-label="Main navigation">
 			{
 				navigation.map((item) => {
 					const active = isActive(item.href);
@@ -62,19 +62,19 @@ function isActive(href: string): boolean {
 			<button
 				id="theme-toggle"
 				class="btn btn-ghost btn-sm btn-circle"
-				aria-label="Farbschema wechseln"
+				aria-label="Toggle color scheme"
 			>
 				<!-- Sun icon (visible in dark mode) -->
-				<Icon name="sun" id="icon-sun" class="hidden w-5 h-5" />
+				<Icon name="sun" id="icon-sun" class="w-5 h-5" />
 				<!-- Moon icon (visible in light mode) -->
-				<Icon name="moon" id="icon-moon" class="w-5 h-5" />
+				<Icon name="moon" id="icon-moon" class="hidden w-5 h-5" />
 			</button>
 
 			<!-- Hamburger Button (mobile only) -->
 			<button
 				id="hamburger-btn"
 				class="btn btn-ghost btn-sm btn-circle md:hidden"
-				aria-label="Menü öffnen"
+				aria-label="Open menu"
 				aria-expanded="false"
 				aria-controls="mobile-nav"
 			>
@@ -95,17 +95,13 @@ function isActive(href: string): boolean {
 	<div class="mobile-nav-panel apple-glass border-y-0 border-r-0 rounded-l-3xl">
 		<!-- Close Button -->
 		<div class="flex justify-end p-6">
-			<button
-				id="mobile-nav-close"
-				class="btn btn-ghost btn-sm btn-circle"
-				aria-label="Menü schließen"
-			>
+			<button id="mobile-nav-close" class="btn btn-ghost btn-sm btn-circle" aria-label="Close menu">
 				<Icon name="close" class="w-6 h-6" />
 			</button>
 		</div>
 
 		<!-- Mobile Nav Links -->
-		<nav class="flex flex-col items-center gap-2 px-6 mt-8" aria-label="Mobile Navigation">
+		<nav class="flex flex-col items-center gap-2 px-6 mt-8" aria-label="Mobile navigation">
 			{
 				navigation.map((item) => {
 					const active = isActive(item.href);
@@ -129,11 +125,11 @@ function isActive(href: string): boolean {
 			<button
 				id="theme-toggle-mobile"
 				class="btn btn-ghost btn-sm gap-2"
-				aria-label="Farbschema wechseln"
+				aria-label="Toggle color scheme"
 			>
-				<Icon name="sun" id="icon-sun-mobile" class="hidden w-5 h-5" />
-				<Icon name="moon" id="icon-moon-mobile" class="w-5 h-5" />
-				<span class="text-sm">Theme wechseln</span>
+				<Icon name="sun" id="icon-sun-mobile" class="w-5 h-5" />
+				<Icon name="moon" id="icon-moon-mobile" class="hidden w-5 h-5" />
+				<span class="text-sm">Toggle theme</span>
 			</button>
 		</div>
 	</div>
@@ -191,7 +187,7 @@ function isActive(href: string): boolean {
 		function openMobileNav() {
 			mobileNav.classList.add("is-open");
 			hamburgerBtn.setAttribute("aria-expanded", "true");
-			hamburgerBtn.setAttribute("aria-label", "Menü schließen");
+			hamburgerBtn.setAttribute("aria-label", "Close menu");
 			hamburgerBtn.classList.add("is-active");
 			document.body.classList.add("mobile-nav-body-lock");
 		}
@@ -199,7 +195,7 @@ function isActive(href: string): boolean {
 		function closeMobileNav() {
 			mobileNav.classList.remove("is-open");
 			hamburgerBtn.setAttribute("aria-expanded", "false");
-			hamburgerBtn.setAttribute("aria-label", "Menü öffnen");
+			hamburgerBtn.setAttribute("aria-label", "Open menu");
 			hamburgerBtn.classList.remove("is-active");
 			document.body.classList.remove("mobile-nav-body-lock");
 		}
@@ -227,6 +223,24 @@ function isActive(href: string): boolean {
 		mobileNav.addEventListener("click", (e) => {
 			if (e.target === mobileNav) {
 				closeMobileNav();
+			}
+		});
+
+		// Focus trap: keep Tab/Shift+Tab inside mobile nav while open
+		mobileNav.addEventListener("keydown", (e) => {
+			if (e.key !== "Tab" || !mobileNav.classList.contains("is-open")) return;
+			const focusable = mobileNav.querySelectorAll(
+				'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])',
+			);
+			if (focusable.length === 0) return;
+			const first = focusable[0];
+			const last = focusable[focusable.length - 1];
+			if (e.shiftKey && document.activeElement === first) {
+				e.preventDefault();
+				last.focus();
+			} else if (!e.shiftKey && document.activeElement === last) {
+				e.preventDefault();
+				first.focus();
 			}
 		});
 	}

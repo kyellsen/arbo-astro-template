@@ -1,29 +1,26 @@
 ---
 // src/components/Footer.astro
-// Zweispaltiger Footer mit Kontaktdaten, Social Links und rechtlichen Links.
-// Auf Mobilgeräten wird alles untereinander (einspaltig) dargestellt.
-// Alle Kontaktdaten stammen aus site.config.ts (Single Source of Truth).
+// Two-column footer with contact info, social links, and legal links.
+// On mobile, everything stacks vertically.
+// All contact data is sourced from site.config.ts (Single Source of Truth).
 import { siteConfig } from "../site.config";
 import Icon from "./Icon.astro";
 
 const { company, contact, social } = siteConfig;
-const addr = company.address;
 ---
 
 <footer class="bg-base-200 border-t border-base-300 mt-16">
-	<!-- Hauptbereich: Auf Desktop zweispaltig, auf Mobil einspaltig -->
+	<!-- Main area: two columns on desktop, single on mobile -->
 	<div class="max-w-6xl mx-auto px-4 py-8 sm:px-6 sm:py-12">
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-			<!-- Kontaktdaten -->
+			<!-- Contact Info -->
 			<div class="text-center md:text-left">
-				<h4 class="text-base font-bold uppercase tracking-widest text-base-content/50 mb-3">
-					Kontakt
-				</h4>
+				<h2 class="text-base font-bold uppercase tracking-widest text-base-content/50 mb-3">
+					Contact
+				</h2>
 				<div class="space-y-1 text-base text-base-content/70">
 					<p class="font-semibold text-base-content">{company.name}</p>
-					<p class="font-medium text-base-content">Inhaber: {company.owner}</p>
-					<p>{addr.street}</p>
-					<p>{addr.zip} {addr.city}</p>
+					<p class="text-base-content/60">Developed by {company.owner}</p>
 				</div>
 				<div class="mt-4 space-y-2 text-base inline-flex flex-col items-center md:items-start">
 					<a
@@ -33,41 +30,16 @@ const addr = company.address;
 						<Icon name="email" class="w-4 h-4 shrink-0" />
 						<span class="font-mono break-all">{contact.email}</span>
 					</a>
-					<a
-						href={`tel:${contact.phone}`}
-						class="flex items-center gap-2 hover:text-primary transition-colors"
-					>
-						<Icon name="phone" class="w-4 h-4 shrink-0" />
-						<span class="font-mono">{contact.phoneDisplay}</span>
-					</a>
-					<a
-						href={contact.whatsapp}
-						target="_blank"
-						rel="noopener"
-						class="flex items-center gap-2 hover:text-[#25D366] transition-colors"
-					>
-						<Icon name="whatsapp" class="w-4 h-4 shrink-0 text-[#25D366]" />
-						<span>Per WhatsApp schreiben</span>
-					</a>
-					<a
-						href={contact.signal}
-						target="_blank"
-						rel="noopener"
-						class="flex items-center gap-2 hover:text-[#3A76F0] transition-colors"
-					>
-						<Icon name="signal" class="w-4 h-4 shrink-0 text-[#3A76F0]" />
-						<span>Per Signal schreiben</span>
-					</a>
 				</div>
 			</div>
 
-			<!-- Social & Partner + Rechtliches -->
+			<!-- Social & Legal -->
 			<div class="flex flex-col gap-8 text-center md:text-left">
 				<!-- Social & Partner Links -->
 				<div>
-					<h4 class="text-base font-bold uppercase tracking-widest text-base-content/50 mb-3">
-						Social & Partner
-					</h4>
+					<h2 class="text-base font-bold uppercase tracking-widest text-base-content/50 mb-3">
+						Social & Open Source
+					</h2>
 					<div class="inline-flex flex-col gap-2 text-base items-center md:items-start">
 						<a
 							href={social.github}
@@ -79,45 +51,28 @@ const addr = company.address;
 							<Icon name="github" class="w-4 h-4 shrink-0" />
 							<span>GitHub</span>
 						</a>
-						<a
-							href={social.instagram}
-							target="_blank"
-							rel="noopener"
-							class="flex items-center gap-2 hover:text-primary transition-colors"
-							aria-label="Instagram"
-						>
-							<Icon name="instagram" class="w-4 h-4 shrink-0" />
-							<span>Instagram</span>
-						</a>
 					</div>
 				</div>
 
-				<!-- Rechtliche Navigation -->
+				<!-- Legal Navigation -->
 				<div>
-					<h4 class="text-base font-bold uppercase tracking-widest text-base-content/50 mb-3">
-						Rechtliches
-					</h4>
+					<h2 class="text-base font-bold uppercase tracking-widest text-base-content/50 mb-3">
+						Legal
+					</h2>
 					<div class="inline-flex flex-col gap-2 text-base items-center md:items-start">
-						<a href="/contact" class="flex items-center gap-2 hover:text-primary transition-colors">
-							<!-- Briefumschlag-Icon -->
-							<Icon name="email" class="w-4 h-4 shrink-0" />
-							<span>Kontakt</span>
-						</a>
 						<a
 							href="/impressum"
 							class="flex items-center gap-2 hover:text-primary transition-colors"
 						>
-							<!-- Dokument-Icon -->
 							<Icon name="document" class="w-4 h-4 shrink-0" />
-							<span>Impressum</span>
+							<span>Legal Notice</span>
 						</a>
 						<a
 							href="/datenschutz"
 							class="flex items-center gap-2 hover:text-primary transition-colors"
 						>
-							<!-- Schild/Datenschutz-Icon -->
 							<Icon name="shield" class="w-4 h-4 shrink-0" />
-							<span>Datenschutz</span>
+							<span>Privacy Policy</span>
 						</a>
 					</div>
 				</div>
@@ -125,11 +80,11 @@ const addr = company.address;
 		</div>
 	</div>
 
-	<!-- Copyright-Zeile ganz unten -->
+	<!-- Copyright line -->
 	<div class="border-t border-base-300 py-4 px-4 sm:py-6 sm:px-6">
 		<div class="max-w-6xl mx-auto text-center text-sm text-base-content/50">
 			&copy; {new Date().getFullYear()}
-			{company.name} · {company.owner}. Alle Rechte vorbehalten.
+			{company.name} · {company.owner}. All rights reserved.
 		</div>
 	</div>
 </footer>

@@ -1,9 +1,21 @@
 # https://www.robotstxt.org/robotstxt.html
+
+# ╔═══════════════════════════════════════════════════════════════════════╗
+# ║  TODO: GLOBAL DISALLOW — VORLÄUFIG / TEMPORARY                     ║
+# ║  Die gesamte Seite wird aktuell für alle Crawler gesperrt.          ║
+# ║  Sobald die Seite offiziell live gehen soll, diesen Block           ║
+# ║  durch die ursprüngliche Konfiguration ersetzen (siehe unten).      ║
+# ║  See also: src/components/SEOHead.astro and AGENTS.md              ║
+# ╚═══════════════════════════════════════════════════════════════════════╝
 User-agent: *
-Allow: /
+Disallow: /
 
-# Interne Seiten ausschließen
-Disallow: /colors
-
-# Sitemap
-Sitemap: https://arbosphere.de/sitemap-index.xml
+# ── Original config (re-enable when going live) ──
+# User-agent: *
+# Allow: /
+#
+# # Interne Seiten ausschließen
+# Disallow: /colors
+#
+# # Sitemap
+# Sitemap: https://arbosphere.de/sitemap-index.xml
