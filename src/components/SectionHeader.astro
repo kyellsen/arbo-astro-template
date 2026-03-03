@@ -1,0 +1,64 @@
+---
+// src/components/SectionHeader.astro
+// Reusable component for section headers (badge, headline, description)
+interface Props {
+	/** Main headline text */
+	headline?: string;
+	/** Highlighted text to append to the headline (used in Hero) */
+	highlightedText?: string;
+	/** Optional description paragraph */
+	description?: string;
+	/** Text alignment */
+	align?: "left" | "center" | "responsive";
+	/** HTML tag for the headline */
+	as?: "h1" | "h2";
+	/** Bottom margin for the whole header block */
+	marginBottom?: string;
+}
+
+const {
+	headline,
+	highlightedText,
+	description,
+	align = "left",
+	as: Tag = "h2",
+	marginBottom = "mb-12",
+} = Astro.props;
+
+const alignmentClasses = {
+	left: "text-left",
+	center: "text-center",
+	responsive: "text-center md:text-left",
+};
+
+const alignClass = alignmentClasses[align] || alignmentClasses.left;
+
+// Description alignment: if center or responsive, center the max-w block
+const descAlignClass =
+	align === "center" ? "mx-auto" : align === "responsive" ? "mx-auto md:mx-0" : "";
+---
+
+<div class:list={[alignClass, marginBottom]}>
+	{
+		headline && (
+			<Tag>
+				{headline}
+				{highlightedText && <span class="text-primary"> {highlightedText}</span>}
+			</Tag>
+		)
+	}
+	{
+		description && (
+			<p
+				class:list={[
+					"text-base-content/70 max-w-2xl",
+					descAlignClass,
+					Tag === "h1" ? "text-lg leading-relaxed mt-6" : "mt-4",
+				]}
+			>
+				{description}
+			</p>
+		)
+	}
+	<slot />
+</div>

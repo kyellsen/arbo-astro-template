@@ -22,9 +22,9 @@
 	/* Hintergründe */
 	--color-base-100: oklch(98% 0.005 160);
 	/* Kühles Off-White mit Emerald-Tint */
-	--color-base-200: oklch(95% 0.008 160);
+	--color-base-200: oklch(92% 0.01 160);
 	/* Leichtes Grau für Cards/Sections */
-	--color-base-300: oklch(90% 0.01 160);
+	--color-base-300: oklch(86% 0.012 160);
 	/* Borders & Trennlinien */
 	--color-base-content: oklch(25% 0.02 250);
 	/* Fast-Schwarz für Text */
@@ -54,7 +54,7 @@
 	--color-info-content: oklch(98% 0 0);
 	--color-success: oklch(65% 0.16 130);
 	/* = palette chartreuse */
-	--color-success-content: oklch(98% 0 0);
+	--color-success-content: oklch(25% 0.05 130);
 	--color-warning: oklch(75% 0.22 85);
 	/* = palette gold */
 	--color-warning-content: oklch(25% 0.05 85);
@@ -75,9 +75,9 @@
 	color-scheme: dark;
 
 	/* Hintergründe: Tiefes Emerald-Grau */
-	--color-base-100: oklch(22% 0.015 160);
-	--color-base-200: oklch(18% 0.015 160);
-	--color-base-300: oklch(26% 0.02 160);
+	--color-base-100: oklch(18% 0.015 160);
+	--color-base-200: oklch(13% 0.015 160);
+	--color-base-300: oklch(29% 0.02 160);
 	--color-base-content: oklch(90% 0.01 160);
 	/* Helles, kühles Weiß */
 
@@ -114,6 +114,256 @@
 	--radius-box: 1rem;
 	--border: 1px;
 }
+
+/* ──────────────────────────────────────────────────────────
+   Additional Theme Pairs (for other brands)
+   ──────────────────────────────────────────────────────────
+   To switch themes:
+   1. Uncomment the desired theme pair below
+   2. Update the @plugin "daisyui" block at the top:
+      change "arbo-light --default" / "arbo-dark" to the new pair names
+   3. Update site.config.ts: theme.light / theme.dark to match
+   ────────────────────────────────────────────────────────── */
+
+/* ── Baumpflege-OH (Primary: Emerald 160° / Secondary: Teal 200° / Accent: Gold 85°) ── */
+
+/*
+@plugin "daisyui/theme" {
+	name: "baum-light";
+	color-scheme: light;
+	--color-base-100: oklch(98% 0.005 160);
+	--color-base-200: oklch(92% 0.01 160);
+	--color-base-300: oklch(86% 0.012 160);
+	--color-base-content: oklch(25% 0.02 250);
+	--color-primary: oklch(52% 0.17 160);
+	--color-primary-content: oklch(98% 0 0);
+	--color-secondary: oklch(61% 0.16 200);
+	--color-secondary-content: oklch(98% 0 0);
+	--color-accent: oklch(75% 0.22 85);
+	--color-accent-content: oklch(25% 0.05 85);
+	--color-neutral: oklch(30% 0.02 250);
+	--color-neutral-content: oklch(95% 0.01 250);
+	--color-info: oklch(65% 0.15 245);
+	--color-info-content: oklch(98% 0 0);
+	--color-success: oklch(65% 0.16 130);
+	--color-success-content: oklch(25% 0.05 130);
+	--color-warning: oklch(75% 0.22 85);
+	--color-warning-content: oklch(25% 0.05 85);
+	--color-error: oklch(58% 0.22 25);
+	--color-error-content: oklch(98% 0 0);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
+
+/*
+@plugin "daisyui/theme" {
+	name: "baum-dark";
+	color-scheme: dark;
+	--color-base-100: oklch(18% 0.015 160);
+	--color-base-200: oklch(13% 0.015 160);
+	--color-base-300: oklch(29% 0.02 160);
+	--color-base-content: oklch(90% 0.01 160);
+	--color-primary: oklch(65% 0.18 160);
+	--color-primary-content: oklch(18% 0.05 160);
+	--color-secondary: oklch(70% 0.14 200);
+	--color-secondary-content: oklch(18% 0.05 200);
+	--color-accent: oklch(82% 0.17 85);
+	--color-accent-content: oklch(20% 0.05 85);
+	--color-neutral: oklch(35% 0.02 250);
+	--color-neutral-content: oklch(90% 0.01 250);
+	--color-info: oklch(73% 0.1 245);
+	--color-info-content: oklch(18% 0.05 245);
+	--color-success: oklch(73% 0.13 130);
+	--color-success-content: oklch(18% 0.05 130);
+	--color-warning: oklch(82% 0.17 85);
+	--color-warning-content: oklch(20% 0.05 85);
+	--color-error: oklch(68% 0.17 25);
+	--color-error-content: oklch(18% 0.05 25);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
+
+/* ── Kyell Jensen (Primary: Cornflower 245° / Secondary: Violet 290° / Accent: Gold 85°) ── */
+
+/*
+@plugin "daisyui/theme" {
+	name: "kjensen-light";
+	color-scheme: light;
+	--color-base-100: oklch(98% 0.005 245);
+	--color-base-200: oklch(92% 0.01 245);
+	--color-base-300: oklch(86% 0.012 245);
+	--color-base-content: oklch(25% 0.02 250);
+	--color-primary: oklch(65% 0.15 245);
+	--color-primary-content: oklch(98% 0 0);
+	--color-secondary: oklch(60% 0.18 290);
+	--color-secondary-content: oklch(98% 0 0);
+	--color-accent: oklch(75% 0.22 85);
+	--color-accent-content: oklch(25% 0.05 85);
+	--color-neutral: oklch(30% 0.02 250);
+	--color-neutral-content: oklch(95% 0.01 250);
+	--color-info: oklch(65% 0.15 245);
+	--color-info-content: oklch(98% 0 0);
+	--color-success: oklch(65% 0.16 130);
+	--color-success-content: oklch(25% 0.05 130);
+	--color-warning: oklch(75% 0.22 85);
+	--color-warning-content: oklch(25% 0.05 85);
+	--color-error: oklch(58% 0.22 25);
+	--color-error-content: oklch(98% 0 0);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
+
+/*
+@plugin "daisyui/theme" {
+	name: "kjensen-dark";
+	color-scheme: dark;
+	--color-base-100: oklch(18% 0.015 245);
+	--color-base-200: oklch(13% 0.015 245);
+	--color-base-300: oklch(29% 0.02 245);
+	--color-base-content: oklch(90% 0.01 245);
+	--color-primary: oklch(73% 0.1 245);
+	--color-primary-content: oklch(18% 0.05 245);
+	--color-secondary: oklch(75% 0.13 290);
+	--color-secondary-content: oklch(18% 0.05 290);
+	--color-accent: oklch(82% 0.17 85);
+	--color-accent-content: oklch(20% 0.05 85);
+	--color-neutral: oklch(35% 0.02 250);
+	--color-neutral-content: oklch(90% 0.01 250);
+	--color-info: oklch(73% 0.1 245);
+	--color-info-content: oklch(18% 0.05 245);
+	--color-success: oklch(73% 0.13 130);
+	--color-success-content: oklch(18% 0.05 130);
+	--color-warning: oklch(82% 0.17 85);
+	--color-warning-content: oklch(20% 0.05 85);
+	--color-error: oklch(68% 0.17 25);
+	--color-error-content: oklch(18% 0.05 25);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
+
+/* ── Arbosphere (Primary: Chartreuse 130° / Secondary: Emerald 160° / Accent: Gold 85°) ── */
+
+/*
+@plugin "daisyui/theme" {
+	name: "arbo-chartreuse-light";
+	color-scheme: light;
+	--color-base-100: oklch(98% 0.005 130);
+	--color-base-200: oklch(92% 0.01 130);
+	--color-base-300: oklch(86% 0.012 130);
+	--color-base-content: oklch(25% 0.02 250);
+	--color-primary: oklch(65% 0.16 130);
+	--color-primary-content: oklch(98% 0 0);
+	--color-secondary: oklch(52% 0.17 160);
+	--color-secondary-content: oklch(98% 0 0);
+	--color-accent: oklch(75% 0.22 85);
+	--color-accent-content: oklch(25% 0.05 85);
+	--color-neutral: oklch(30% 0.02 250);
+	--color-neutral-content: oklch(95% 0.01 250);
+	--color-info: oklch(65% 0.15 245);
+	--color-info-content: oklch(98% 0 0);
+	--color-success: oklch(65% 0.16 130);
+	--color-success-content: oklch(25% 0.05 130);
+	--color-warning: oklch(75% 0.22 85);
+	--color-warning-content: oklch(25% 0.05 85);
+	--color-error: oklch(58% 0.22 25);
+	--color-error-content: oklch(98% 0 0);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
+
+/*
+@plugin "daisyui/theme" {
+	name: "arbo-chartreuse-dark";
+	color-scheme: dark;
+	--color-base-100: oklch(18% 0.015 130);
+	--color-base-200: oklch(13% 0.015 130);
+	--color-base-300: oklch(29% 0.02 130);
+	--color-base-content: oklch(90% 0.01 130);
+	--color-primary: oklch(73% 0.13 130);
+	--color-primary-content: oklch(18% 0.05 130);
+	--color-secondary: oklch(65% 0.18 160);
+	--color-secondary-content: oklch(18% 0.05 160);
+	--color-accent: oklch(82% 0.17 85);
+	--color-accent-content: oklch(20% 0.05 85);
+	--color-neutral: oklch(35% 0.02 250);
+	--color-neutral-content: oklch(90% 0.01 250);
+	--color-info: oklch(73% 0.1 245);
+	--color-info-content: oklch(18% 0.05 245);
+	--color-success: oklch(73% 0.13 130);
+	--color-success-content: oklch(18% 0.05 130);
+	--color-warning: oklch(82% 0.17 85);
+	--color-warning-content: oklch(20% 0.05 85);
+	--color-error: oklch(68% 0.17 25);
+	--color-error-content: oklch(18% 0.05 25);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
+
+/* ── Silvasonic (Primary: Teal 200° / Secondary: Cornflower 245° / Accent: Chartreuse 130°) ── */
+
+/*
+@plugin "daisyui/theme" {
+	name: "silva-light";
+	color-scheme: light;
+	--color-base-100: oklch(98% 0.005 200);
+	--color-base-200: oklch(92% 0.01 200);
+	--color-base-300: oklch(86% 0.012 200);
+	--color-base-content: oklch(25% 0.02 250);
+	--color-primary: oklch(61% 0.16 200);
+	--color-primary-content: oklch(98% 0 0);
+	--color-secondary: oklch(65% 0.15 245);
+	--color-secondary-content: oklch(98% 0 0);
+	--color-accent: oklch(65% 0.16 130);
+	--color-accent-content: oklch(25% 0.05 130);
+	--color-neutral: oklch(30% 0.02 250);
+	--color-neutral-content: oklch(95% 0.01 250);
+	--color-info: oklch(65% 0.15 245);
+	--color-info-content: oklch(98% 0 0);
+	--color-success: oklch(65% 0.16 130);
+	--color-success-content: oklch(25% 0.05 130);
+	--color-warning: oklch(75% 0.22 85);
+	--color-warning-content: oklch(25% 0.05 85);
+	--color-error: oklch(58% 0.22 25);
+	--color-error-content: oklch(98% 0 0);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
+
+/*
+@plugin "daisyui/theme" {
+	name: "silva-dark";
+	color-scheme: dark;
+	--color-base-100: oklch(18% 0.015 200);
+	--color-base-200: oklch(13% 0.015 200);
+	--color-base-300: oklch(29% 0.02 200);
+	--color-base-content: oklch(90% 0.01 200);
+	--color-primary: oklch(70% 0.14 200);
+	--color-primary-content: oklch(18% 0.05 200);
+	--color-secondary: oklch(73% 0.1 245);
+	--color-secondary-content: oklch(18% 0.05 245);
+	--color-accent: oklch(73% 0.13 130);
+	--color-accent-content: oklch(18% 0.05 130);
+	--color-neutral: oklch(35% 0.02 250);
+	--color-neutral-content: oklch(90% 0.01 250);
+	--color-info: oklch(73% 0.1 245);
+	--color-info-content: oklch(18% 0.05 245);
+	--color-success: oklch(73% 0.13 130);
+	--color-success-content: oklch(18% 0.05 130);
+	--color-warning: oklch(82% 0.17 85);
+	--color-warning-content: oklch(20% 0.05 85);
+	--color-error: oklch(68% 0.17 25);
+	--color-error-content: oklch(18% 0.05 25);
+	--radius-box: 1rem;
+	--border: 1px;
+}
+*/
 
 /* ──────────────────────────────────────────────────────────
    Fonts: Geist Sans & Geist Mono
@@ -164,14 +414,8 @@
 html {
 	font-size: clamp(16px, 2.5vw + 8px, 18px);
 	scroll-behavior: smooth;
-}
-
-body {
-	font-family: var(--font-sans);
-}
-
-.font-mono {
-	font-family: var(--font-mono);
+	scroll-padding-top: 6rem;
+	/* Account for sticky header */
 }
 
 @layer base {
@@ -194,23 +438,226 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────
-   CI Utility-Klassen
+   Modern UI/UX Background Utilities (Gradients & Glows)
    ────────────────────────────────────────────────────────── */
 
-@keyframes fade-in-up {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
+/* 1. Glass-Surface (Default Card Style) 
+   Nutzt den Mesh-Hintergrund der Seite optimal aus. */
+.apple-glass {
+	/* Sanfter, leicht durchsichtiger Hintergrund (heller im Light, dunkler im Dark) */
+	background-color: oklch(from var(--color-base-200) l c h / 0.8);
+
+	/* Guter Blur für den starken "Frozen Glass" Effekt */
+	backdrop-filter: blur(24px) saturate(180%);
+	-webkit-backdrop-filter: blur(24px) saturate(180%);
+
+	/* Feiner Kontrast-Rahmen, der die Karte (wie bei Apple/Modern UI üblich) vom Hintergrund abhebt */
+	border: 1px solid oklch(from var(--color-base-content) l c h / 0.15);
+
+	/* Subtiler Drop-Shadow für räumliche Tiefe */
+	box-shadow:
+		0 4px 6px -1px oklch(0% 0 0 / 0.05),
+		0 2px 4px -2px oklch(0% 0 0 / 0.05),
+		inset 0 1px 0 oklch(100% 0 0 / 0.1);
+	/* Inneres Highlight oben (Glossy Effect) */
+}
+
+/* Anpassung des inneren Highlights für Darkmode, damit es nicht grell weiß ist */
+[data-theme$="dark"] .apple-glass,
+[data-theme="arbo-dark"] .apple-glass {
+	box-shadow:
+		0 4px 6px -1px oklch(0% 0 0 / 0.2),
+		inset 0 1px 0 oklch(100% 0 0 / 0.03);
+}
+
+/* 2. Mesh-Gradient (Lokaler Card/Section-Hintergrund, falls nicht glass) */
+.bg-mesh {
+	background:
+		radial-gradient(
+			circle at 15% 15%,
+			oklch(from var(--color-primary) l c h / 0.08),
+			transparent 30%
+		),
+		radial-gradient(
+			circle at 85% 85%,
+			oklch(from var(--color-secondary) l c h / 0.08),
+			transparent 30%
+		);
+	background-color: var(--color-base-100);
+}
+
+/* 3. Aurora (Wabernde, animierte Wolken) */
+@keyframes aurora {
+	0% {
+		transform: translate(0, 0) scale(1);
 	}
 
-	to {
-		opacity: 1;
-		transform: translateY(0);
+	33% {
+		transform: translate(30px, -50px) scale(1.1);
+	}
+
+	66% {
+		transform: translate(-20px, 20px) scale(0.9);
+	}
+
+	100% {
+		transform: translate(0, 0) scale(1);
 	}
 }
 
-.animate-fade-in {
-	animation: fade-in-up 0.8s ease-out forwards;
+.bg-aurora {
+	position: relative;
+	overflow: hidden;
+}
+
+.bg-aurora::before {
+	content: "";
+	position: absolute;
+	inset: -30%;
+	z-index: -1;
+	background:
+		radial-gradient(
+			circle at 30% 20%,
+			oklch(from var(--color-primary) l c h / 0.15),
+			transparent 40%
+		),
+		radial-gradient(
+			circle at 70% 80%,
+			oklch(from var(--color-secondary) l c h / 0.15),
+			transparent 40%
+		),
+		radial-gradient(circle at 80% 30%, oklch(from var(--color-accent) l c h / 0.1), transparent 40%);
+	filter: blur(40px);
+	animation: aurora 15s ease-in-out infinite alternate;
+}
+
+/* 4. Radial Spotlights / Glow Card */
+.glow-card {
+	position: relative;
+	z-index: 1;
+}
+
+.glow-card::after {
+	content: "";
+	position: absolute;
+	top: -20px;
+	right: -20px;
+	width: 60%;
+	height: 60%;
+	background: radial-gradient(
+		circle,
+		oklch(from var(--color-primary) l c h / 0.15) 0%,
+		transparent 60%
+	);
+	z-index: -1;
+	filter: blur(24px);
+	pointer-events: none;
+	border-radius: inherit;
+}
+
+/* 5. Gradient Border (Sleek Tech) */
+.border-gradient {
+	position: relative;
+	background-color: var(--color-base-100);
+	background-clip: padding-box;
+	border: 1px solid transparent;
+}
+
+.border-gradient::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	margin: -1px;
+	/* Erzeugt den eigentlichen Border */
+	border-radius: inherit;
+	background: linear-gradient(
+		135deg,
+		oklch(from var(--color-primary) l c h / 0.5),
+		transparent 50%,
+		oklch(from var(--color-secondary) l c h / 0.3)
+	);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Scroll Reveal Classes
+   ────────────────────────────────────────────────────────── */
+
+.reveal-on-scroll {
+	opacity: 0;
+	transform: translateY(20px);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.reveal-on-scroll {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+/* ──────────────────────────────────────────────────────────
+   Body Gradient — Default Mesh für das Template
+   ──────────────────────────────────────────────────────────
+   Ein sehr sanfter, dezentrierter Radial-Verlauf aus Primary und
+   Secondary. Ersetzt starre Hintergrundfarben durch Tiefe.
+   ────────────────────────────────────────────────────────── */
+
+.body-gradient {
+	position: relative;
+}
+
+.body-gradient::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-color: var(--color-base-100);
+	background-image:
+		radial-gradient(
+			circle at 40% 0%,
+			oklch(from var(--color-primary) l c h / 0.04),
+			transparent 80%
+		),
+		radial-gradient(
+			circle at 80% 80%,
+			oklch(from var(--color-secondary) l c h / 0.03),
+			transparent 70%
+		);
+}
+
+/* Dark mode: minimal leuchtender, da der Dunkelwert schluckt */
+[data-theme$="dark"] .body-gradient::before,
+[data-theme="arbo-dark"] .body-gradient::before {
+	background-image:
+		radial-gradient(
+			circle at 40% 0%,
+			oklch(from var(--color-primary) l c h / 0.06),
+			transparent 80%
+		),
+		radial-gradient(
+			circle at 80% 80%,
+			oklch(from var(--color-secondary) l c h / 0.05),
+			transparent 70%
+		);
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -243,6 +690,67 @@ body {
 	position: relative;
 	z-index: 1;
 	background-color: var(--color-base-100);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Desktop Nav Links — Active + Hover
+   ────────────────────────────────────────────────────────── */
+
+.nav-link {
+	position: relative;
+	padding-block: 0.25rem;
+	color: var(--color-base-content);
+	transition: color 0.25s ease;
+}
+
+/* Underline shared base (pseudo-element) */
+.nav-link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 100%;
+	height: 2px;
+	border-radius: 1px;
+	background-color: var(--color-primary);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover state: subtle color shift + animated underline slide-in */
+.nav-link:hover {
+	color: var(--color-primary);
+}
+
+.nav-link:hover::after {
+	transform: scaleX(1);
+}
+
+/* Active state: primary color, bolder weight, persistent indicator */
+.nav-link--active {
+	color: var(--color-primary);
+	font-weight: 600;
+}
+
+.nav-link--active::after {
+	transform: scaleX(1);
+	height: 2.5px;
+	background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+/* Active + hover: keep the gradient bar, no visual jump */
+.nav-link--active:hover::after {
+	height: 2.5px;
+	background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+/* Focus-visible for keyboard nav */
+.nav-link:focus-visible {
+	color: var(--color-primary);
+	outline: 2px solid var(--color-primary);
+	outline-offset: 4px;
+	border-radius: 2px;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -280,7 +788,6 @@ body {
 	width: 80%;
 	max-width: 320px;
 	height: 100%;
-	background-color: var(--color-base-100);
 	transform: translateX(100%);
 	transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 	overflow-y: auto;
@@ -313,6 +820,20 @@ body {
 	background-color: var(--color-primary);
 	color: var(--color-primary-content);
 	outline: none;
+}
+
+/* Active page in mobile nav */
+.mobile-nav-link--active {
+	background-color: oklch(from var(--color-primary) l c h / 0.12);
+	color: var(--color-primary);
+	font-weight: 600;
+	border-left: 3px solid var(--color-primary);
+}
+
+.mobile-nav-link--active:hover,
+.mobile-nav-link--active:focus-visible {
+	background-color: var(--color-primary);
+	color: var(--color-primary-content);
 }
 
 /* ──────────────────────────────────────────────────────────

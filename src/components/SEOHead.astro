@@ -2,7 +2,7 @@
 // src/components/SEOHead.astro — Rendert alle SEO-relevanten Tags im <head>
 // Liest Defaults automatisch aus der zentralen Config; Props überschreiben bei Bedarf.
 
-import { siteConfig, pageSeo, organizationSchema, type PageSeo } from "../config/seo.ts";
+import { seoConfig, pageSeo, organizationSchema, type PageSeo } from "../config/seo.ts";
 
 interface Props {
 	/** Seitentitel — wird ins titleTemplate eingesetzt */
@@ -28,22 +28,22 @@ const currentPath = rawPath === "/" ? "/" : rawPath.replace(/\/+$/, "");
 // Zentrale Defaults für diese Seite holen (falls vorhanden)
 const pageDefaults: Partial<PageSeo> = pageSeo[currentPath] ?? {};
 
-// Props mit Fallback-Kette: Prop > pageSeo > siteConfig
+// Props mit Fallback-Kette: Prop > pageSeo > seoConfig
 const title = Astro.props.title ?? pageDefaults.title;
 const description =
-	Astro.props.description ?? pageDefaults.description ?? siteConfig.defaultDescription;
-const ogImage = Astro.props.ogImage ?? pageDefaults.ogImage ?? siteConfig.defaultOgImage;
+	Astro.props.description ?? pageDefaults.description ?? seoConfig.defaultDescription;
+const ogImage = Astro.props.ogImage ?? pageDefaults.ogImage ?? seoConfig.defaultOgImage;
 const ogType = Astro.props.ogType ?? pageDefaults.ogType ?? "website";
 const noindex = Astro.props.noindex ?? pageDefaults.noindex ?? false;
 const jsonLd = Astro.props.jsonLd ?? currentPath === "/";
 
 // Berechnete Werte
-const finalTitle = title ? siteConfig.titleTemplate.replace("%s", title) : siteConfig.defaultTitle;
+const finalTitle = title ? seoConfig.titleTemplate.replace("%s", title) : seoConfig.defaultTitle;
 
 const canonicalUrl =
-	Astro.props.canonicalUrl ?? `${siteConfig.siteUrl}${currentPath === "/" ? "" : currentPath}`;
+	Astro.props.canonicalUrl ?? `${seoConfig.siteUrl}${currentPath === "/" ? "" : currentPath}`;
 
-const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${siteConfig.siteUrl}${ogImage}`;
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${seoConfig.siteUrl}${ogImage}`;
 ---
 
 <!-- Titel -->
@@ -60,15 +60,15 @@ const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${siteConfig.siteUrl}
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:image" content={ogImageUrl} />
-<meta property="og:locale" content={siteConfig.locale} />
-<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content={seoConfig.locale} />
+<meta property="og:site_name" content={seoConfig.name} />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={finalTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageUrl} />
-{siteConfig.twitterHandle && <meta name="twitter:site" content={siteConfig.twitterHandle} />}
+{seoConfig.twitterHandle && <meta name="twitter:site" content={seoConfig.twitterHandle} />}
 
 <!-- JSON-LD Structured Data -->
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />}

@@ -2,8 +2,9 @@
 // src/pages/services.astro — Leistungen
 import Layout from "../layouts/Layout.astro";
 import ServicesSection from "../components/sections/ServicesSection.astro";
+import { servicesContent } from "../data/services";
 ---
 
 <Layout title="Leistungen">
-	<ServicesSection />
+	<ServicesSection {...servicesContent} />
 </Layout>

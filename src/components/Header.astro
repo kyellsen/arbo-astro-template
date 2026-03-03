@@ -1,35 +1,59 @@
 ---
 // src/components/Header.astro
-// Responsive Header with hamburger menu for mobile + Dark/Light Mode Toggle
+// Responsive Header with config-driven navigation, hamburger menu, and Dark/Light Mode Toggle.
+// Navigation items, logo, and theme names are read from site.config.ts.
+import { Image } from "astro:assets";
 import { siteConfig } from "../site.config";
+import logoSrc from "../assets/logo.webp";
+import Icon from "./Icon.astro";
+
+const { brand, theme, navigation } = siteConfig;
+
+// Determine the current path for active link highlighting
+const currentPath = Astro.url.pathname;
+
+// Helper: check if a nav item matches the current page
+function isActive(href: string): boolean {
+	if (href === "/") return currentPath === "/";
+	return currentPath.startsWith(href);
+}
 ---
 
-<header class="sticky top-0 z-50 bg-base-100/80 backdrop-blur-md border-b border-base-300">
+<header class="sticky top-0 z-50 bg-base-100/90 backdrop-blur-md border-b border-base-content/10">
 	<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
 		<!-- Logo / Wortmarke -->
-		<div class="flex items-center gap-2">
-			<span
-				class="w-8 h-8 rounded border border-primary/30 bg-primary/10 flex items-center justify-center text-primary font-mono font-bold text-sm"
-				>A</span
-			>
+		<a href="/" class="flex items-center gap-2">
+			<Image
+				src={logoSrc}
+				alt={`${brand.name} Logo`}
+				width={72}
+				height={72}
+				class="w-18 h-18 object-contain"
+			/>
 			<span class="font-bold text-xl tracking-tight">
-				Arbo <span class="text-primary font-light">Template</span>
+				{brand.name}
+				{brand.logoSubtitle && <span class="text-primary font-light">{brand.logoSubtitle}</span>}
 			</span>
-		</div>
+		</a>
 
 		<!-- Desktop Navigation -->
 		<nav class="hidden md:flex gap-8 font-medium text-base" aria-label="Hauptnavigation">
-			<a href="/" class="hover:text-primary transition-colors">Start</a>
-			<a href="/services" class="hover:text-primary transition-colors">Leistungen</a>
 			{
-				siteConfig.showProjectsPage && (
-					<a href="/projects" class="hover:text-primary transition-colors">
-						Projekte
-					</a>
-				)
+				navigation.map((item) => {
+					const active = isActive(item.href);
+					return (
+						<a
+							href={item.href}
+							class:list={["nav-link", { "nav-link--active": active }]}
+							aria-current={active ? "page" : undefined}
+							target={"external" in item && (item as any).external ? "_blank" : undefined}
+							rel={"external" in item && (item as any).external ? "noopener" : undefined}
+						>
+							{item.label}
+						</a>
+					);
+				})
 			}
-			<a href="/about" class="hover:text-primary transition-colors">Über uns</a>
-			<a href="/contact" class="hover:text-primary transition-colors">Kontakt</a>
 		</nav>
 
 		<!-- Right: Theme Toggle + Hamburger -->
@@ -41,29 +65,9 @@ import { siteConfig } from "../site.config";
 				aria-label="Farbschema wechseln"
 			>
 				<!-- Sun icon (visible in dark mode) -->
-				<svg
-					id="icon-sun"
-					class="hidden w-5 h-5"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-					></path>
-				</svg>
+				<Icon name="sun" id="icon-sun" class="hidden w-5 h-5" />
 				<!-- Moon icon (visible in light mode) -->
-				<svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-					></path>
-				</svg>
+				<Icon name="moon" id="icon-moon" class="w-5 h-5" />
 			</button>
 
 			<!-- Hamburger Button (mobile only) -->
@@ -74,19 +78,7 @@ import { siteConfig } from "../site.config";
 				aria-expanded="false"
 				aria-controls="mobile-nav"
 			>
-				<svg
-					class="hamburger-icon w-6 h-6"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<line class="hamburger-line hamburger-line-1" x1="4" y1="6" x2="20" y2="6"></line>
-					<line class="hamburger-line hamburger-line-2" x1="4" y1="12" x2="20" y2="12"></line>
-					<line class="hamburger-line hamburger-line-3" x1="4" y1="18" x2="20" y2="18"></line>
-				</svg>
+				<Icon name="hamburger" class="hamburger-icon w-6 h-6" />
 			</button>
 		</div>
 	</div>
@@ -100,7 +92,7 @@ import { siteConfig } from "../site.config";
 	aria-modal="true"
 	aria-label="Mobile Navigation"
 >
-	<div class="mobile-nav-panel">
+	<div class="mobile-nav-panel apple-glass border-y-0 border-r-0 rounded-l-3xl">
 		<!-- Close Button -->
 		<div class="flex justify-end p-6">
 			<button
@@ -108,29 +100,28 @@ import { siteConfig } from "../site.config";
 				class="btn btn-ghost btn-sm btn-circle"
 				aria-label="Menü schließen"
 			>
-				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"></path>
-				</svg>
+				<Icon name="close" class="w-6 h-6" />
 			</button>
 		</div>
 
 		<!-- Mobile Nav Links -->
 		<nav class="flex flex-col items-center gap-2 px-6 mt-8" aria-label="Mobile Navigation">
-			<a href="/" class="mobile-nav-link">Start</a>
-			<a href="/services" class="mobile-nav-link">Leistungen</a>
 			{
-				siteConfig.showProjectsPage && (
-					<a href="/projects" class="mobile-nav-link">
-						Projekte
-					</a>
-				)
+				navigation.map((item) => {
+					const active = isActive(item.href);
+					return (
+						<a
+							href={item.href}
+							class:list={["mobile-nav-link", { "mobile-nav-link--active": active }]}
+							aria-current={active ? "page" : undefined}
+							target={"external" in item && (item as any).external ? "_blank" : undefined}
+							rel={"external" in item && (item as any).external ? "noopener" : undefined}
+						>
+							{item.label}
+						</a>
+					);
+				})
 			}
-			<a href="/about" class="mobile-nav-link">Über uns</a>
-			<a href="/contact" class="mobile-nav-link">Kontakt</a>
 		</nav>
 
 		<!-- Mobile Theme Toggle -->
@@ -140,43 +131,17 @@ import { siteConfig } from "../site.config";
 				class="btn btn-ghost btn-sm gap-2"
 				aria-label="Farbschema wechseln"
 			>
-				<svg
-					id="icon-sun-mobile"
-					class="hidden w-5 h-5"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-					></path>
-				</svg>
-				<svg
-					id="icon-moon-mobile"
-					class="w-5 h-5"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-					></path>
-				</svg>
+				<Icon name="sun" id="icon-sun-mobile" class="hidden w-5 h-5" />
+				<Icon name="moon" id="icon-moon-mobile" class="w-5 h-5" />
 				<span class="text-sm">Theme wechseln</span>
 			</button>
 		</div>
 	</div>
 </div>
 
-<script is:inline>
-	// Theme Toggle Logic
-	(function () {
+<script is:inline define:vars={{ themeLight: theme.light, themeDark: theme.dark }}>
+	// Theme Toggle Logic — theme names from config
+	function initHeader() {
 		const toggleDesktop = document.getElementById("theme-toggle");
 		const toggleMobile = document.getElementById("theme-toggle-mobile");
 		const html = document.documentElement;
@@ -188,7 +153,7 @@ import { siteConfig } from "../site.config";
 		function setTheme(theme) {
 			html.setAttribute("data-theme", theme);
 			localStorage.setItem("arbo-theme", theme);
-			if (theme === "arbo-dark") {
+			if (theme === themeDark) {
 				iconSun.classList.remove("hidden");
 				iconMoon.classList.add("hidden");
 				if (iconSunMobile) iconSunMobile.classList.remove("hidden");
@@ -206,12 +171,12 @@ import { siteConfig } from "../site.config";
 		if (savedTheme) {
 			setTheme(savedTheme);
 		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-			setTheme("arbo-dark");
+			setTheme(themeDark);
 		}
 
 		function toggleTheme() {
 			const current = html.getAttribute("data-theme");
-			setTheme(current === "arbo-dark" ? "arbo-light" : "arbo-dark");
+			setTheme(current === themeDark ? themeLight : themeDark);
 		}
 
 		toggleDesktop.addEventListener("click", toggleTheme);
@@ -264,5 +229,8 @@ import { siteConfig } from "../site.config";
 				closeMobileNav();
 			}
 		});
-	})();
+	}
+
+	// Initialize on first load and after view transitions
+	document.addEventListener("astro:page-load", initHeader);
 </script>

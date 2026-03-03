@@ -23,7 +23,7 @@ const formattedDate = date.toLocaleDateString("de-DE", {
 
 <a href={`/projects/${slug}`} class="project-card group block">
 	<article
-		class="bg-base-200 rounded-2xl border border-base-300 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col"
+		class="apple-glass rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col"
 	>
 		<!-- Title Image -->
 		<div class="aspect-video overflow-hidden">
@@ -45,11 +45,17 @@ const formattedDate = date.toLocaleDateString("de-DE", {
 
 			<!-- Tags -->
 			<div class="flex flex-wrap gap-2 mb-3">
-				{tags.map((tag) => <span class="badge badge-outline badge-sm font-mono">{tag}</span>)}
+				{
+					tags.map((tag) => (
+						<span class="badge badge-outline badge-sm font-mono text-secondary border-secondary/30">
+							{tag}
+						</span>
+					))
+				}
 			</div>
 
 			<!-- Date -->
-			<div class="flex items-center gap-2 text-xs text-base-content/40 font-mono">
+			<div class="flex items-center gap-2 text-xs text-secondary/70 font-mono mt-auto">
 				<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path
 						stroke-linecap="round"

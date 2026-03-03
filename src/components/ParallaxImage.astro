@@ -10,9 +10,11 @@ interface Props {
 	alt: string;
 	/** Height of the visible window (CSS value), default: 60vh */
 	height?: string;
+	/** Whether to eagerly load the image (useful for LCP above the fold) */
+	eager?: boolean;
 }
 
-const { src, alt, height = "60vh" } = Astro.props;
+const { src, alt, height = "60vh", eager = false } = Astro.props;
 ---
 
 <div class="parallax-window" style={`height: ${height}`}>
@@ -20,9 +22,12 @@ const { src, alt, height = "60vh" } = Astro.props;
 		<Image
 			src={src}
 			alt={alt}
-			widths={[640, 1024, 1536, 2048]}
+			widths={[640, 1024, 1536, 2048, 3840]}
 			sizes="100vw"
-			loading="lazy"
+			quality="high"
+			format="webp"
+			loading={eager ? "eager" : "lazy"}
+			fetchpriority={eager ? "high" : "auto"}
 			class="parallax-image__img"
 		/>
 	</div>

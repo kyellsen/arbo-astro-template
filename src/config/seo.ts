@@ -1,6 +1,7 @@
 // src/config/seo.ts — Zentrale SEO-Konfiguration
 // Alle SEO-relevanten Texte und Defaults an einem Ort pflegen.
-// Echte Begriffe / Keywords hier eintragen — die Seiten lesen automatisch mit.
+// Brand-Name und URL werden aus site.config.ts importiert (Single Source of Truth).
+import { siteConfig } from "../site.config";
 
 // ─── Typen ───────────────────────────────────────────────────────────
 export interface PageSeo {
@@ -17,32 +18,31 @@ export interface PageSeo {
 }
 
 // ─── Site-weite Defaults ─────────────────────────────────────────────
-export const siteConfig = {
-	/** Firmen- / Projektname */
-	name: "Arbosphere",
+export const seoConfig = {
+	/** Firmen- / Projektname (aus site.config.ts) */
+	name: siteConfig.brand.name,
 
 	/** Fallback-Titel, wenn kein Seitentitel gesetzt ist */
-	defaultTitle: "Arbosphere – Professionelle Baumpflege",
+	defaultTitle: siteConfig.seo.defaultTitle,
 
 	/**
 	 * Template für den endgültigen <title>.
 	 * `%s` wird durch den Seitentitel ersetzt.
 	 * Beispiel: "Leistungen | Arbosphere"
 	 */
-	titleTemplate: "%s | Arbosphere",
+	titleTemplate: siteConfig.seo.titleTemplate,
 
 	/** Fallback Meta-Description */
-	defaultDescription:
-		"Professionelle Baumpflege, Baumkontrolle und Gutachten — nachhaltig, sicher und zertifiziert.",
+	defaultDescription: siteConfig.seo.defaultDescription,
 
 	/**
 	 * Basis-URL der Website (ohne Trailing-Slash).
-	 * Muss mit `site` in astro.config.mjs übereinstimmen.
+	 * Aus site.config.ts — muss mit `site` in astro.config.mjs übereinstimmen.
 	 */
-	siteUrl: "https://arbosphere.de",
+	siteUrl: siteConfig.brand.siteUrl,
 
 	/** Sprach- und Regions-Code für Open Graph */
-	locale: "de_DE",
+	locale: siteConfig.lang === "de" ? "de_DE" : "en_US",
 
 	/** Fallback-OG-Image (relativer Pfad ab Root) */
 	defaultOgImage: "/images/og-default.jpg",
@@ -57,12 +57,11 @@ export const siteConfig = {
 export const pageSeo: Record<string, PageSeo> = {
 	"/": {
 		title: "Start",
-		description:
-			"Arbosphere — Ihr Partner für professionelle Baumpflege, Baumkontrolle und Gutachten in der Region.",
+		description: siteConfig.seo.defaultDescription,
 	},
 	"/about": {
 		title: "Über uns",
-		description: "Erfahren Sie mehr über das Team, die Werte und die Geschichte von Arbosphere.",
+		description: `Erfahren Sie mehr über das Team, die Werte und die Geschichte von ${siteConfig.brand.name}.`,
 	},
 	"/services": {
 		title: "Leistungen",
@@ -71,8 +70,7 @@ export const pageSeo: Record<string, PageSeo> = {
 	},
 	"/contact": {
 		title: "Kontakt",
-		description:
-			"Nehmen Sie Kontakt mit Arbosphere auf — wir beraten Sie gerne zu allen Fragen rund um Ihre Bäume.",
+		description: `Nehmen Sie Kontakt mit ${siteConfig.brand.name} auf — wir beraten Sie gerne zu allen Fragen rund um Ihre Bäume.`,
 	},
 	"/colors": {
 		title: "Farben – Arbo CI",
@@ -83,23 +81,21 @@ export const pageSeo: Record<string, PageSeo> = {
 
 // ─── Structured Data (JSON-LD) ──────────────────────────────────────
 // Basis-Daten für das Organization / LocalBusiness Schema.
-// Felder mit Platzhalter-Werten — später durch echte Daten ersetzen.
+// Reads from both seoConfig (SEO defaults) and siteConfig (contact data).
 export const organizationSchema = {
 	"@context": "https://schema.org",
 	"@type": "LocalBusiness",
-	name: siteConfig.name,
-	url: siteConfig.siteUrl,
-	description: siteConfig.defaultDescription,
-	logo: `${siteConfig.siteUrl}/favicon.svg`,
-	// Adresse — Platzhalter
+	name: seoConfig.name,
+	url: seoConfig.siteUrl,
+	description: seoConfig.defaultDescription,
+	logo: `${seoConfig.siteUrl}/favicon.svg`,
 	address: {
 		"@type": "PostalAddress",
-		streetAddress: "Musterstraße 1",
-		addressLocality: "Musterstadt",
-		postalCode: "12345",
+		streetAddress: siteConfig.company.address.street,
+		addressLocality: siteConfig.company.address.city,
+		postalCode: siteConfig.company.address.zip,
 		addressCountry: "DE",
 	},
-	// Kontakt — Platzhalter
-	telephone: "+49 123 456789",
-	email: "info@arbosphere.de",
+	telephone: siteConfig.contact.phone,
+	email: siteConfig.contact.email,
 };

@@ -1,16 +1,62 @@
 // src/site.config.ts — Central site configuration
-// Toggle optional features and manage contact data here.
-// This file is the Single Source of Truth for all company & contact information.
+// Single Source of Truth for brand, theme, navigation, and contact data.
+// When cloning this template for a new brand:
+//   1. Update brand, theme, lang, navigation
+//   2. Update company, contact, social, hours
+//   3. Adjust theme pair in global.css (uncomment the matching theme)
 
 export const siteConfig = {
-	/** Show the "Projekte" link in the navbar */
-	showProjectsPage: true,
+	// ── Brand ──────────────────────────────────────────────────────────
+	brand: {
+		/** Displayed brand name */
+		name: "Arbosphere",
+		/** Single letter for the logo badge */
+		logoInitial: "A",
+		/** Subtitle shown next to the logo (optional) */
+		logoSubtitle: "Template",
+		/** Production URL (no trailing slash) — must match astro.config.mjs site */
+		siteUrl: "https://arbosphere.de",
+	},
 
-	// ── Firmen- & Kontaktdaten (Single Source of Truth) ──────────────
+	// ── SEO Defaults ───────────────────────────────────────────────────
+	seo: {
+		/** Default title for pages without a specific title */
+		defaultTitle: "Arbosphere — Professionelle Baumpflege",
+		/** Title template (e.g., "%s | Arbosphere") */
+		titleTemplate: "%s | Arbosphere",
+		/** Default description for pages without a specific description */
+		defaultDescription:
+			"Arbosphere — Ihr Partner für professionelle Baumpflege, Baumkontrolle und Gutachten in der Region.",
+	},
+
+	// ── Theme ──────────────────────────────────────────────────────────
+	/** DaisyUI theme names as defined in global.css */
+	theme: {
+		light: "arbo-light",
+		dark: "arbo-dark",
+	},
+
+	// ── Language ───────────────────────────────────────────────────────
+	/** HTML lang attribute */
+	lang: "de" as const,
+
+	// ── Navigation ────────────────────────────────────────────────────
+	/** Main navigation items rendered in Header + Mobile Nav.
+	 *  Remove or add entries as needed. External links open in new tab. */
+	navigation: [
+		{ label: "Start", href: "/" },
+		{ label: "Leistungen", href: "/services" },
+		{ label: "Projekte", href: "/projects" },
+		{ label: "Über uns", href: "/about" },
+		{ label: "Kontakt", href: "/contact" },
+	] as const,
+
+	// ── Firmen- & Kontaktdaten (Single Source of Truth) ───────────────
 
 	company: {
 		name: "Arbosphere",
 		owner: "Kyell Jensen",
+		taxId: "DE XXX XXX XXX",
 		address: {
 			street: "Lindenweg 4",
 			zip: "23714",
@@ -39,3 +85,6 @@ export const siteConfig = {
 		{ days: "Sonntag", time: "geschlossen" },
 	] as const,
 };
+
+// ── Derived types ─────────────────────────────────────────────────────
+export type NavItem = (typeof siteConfig.navigation)[number];

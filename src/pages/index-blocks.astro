@@ -10,36 +10,48 @@ import AboutSection from "../components/sections/AboutSection.astro";
 import ContactSection from "../components/sections/ContactSection.astro";
 import ParallaxImage from "../components/ParallaxImage.astro";
 
-// Hero images from section metadata
-import { sectionMeta as servicesMeta } from "../components/sections/ServicesSection.astro";
-import { sectionMeta as aboutMeta } from "../components/sections/AboutSection.astro";
-import { sectionMeta as contactMeta } from "../components/sections/ContactSection.astro";
+// Content from data files
+import { heroContent } from "../data/hero";
+import { servicesContent } from "../data/services";
+import { aboutContent, aboutHeroImage, aboutHeroAlt } from "../data/about";
+import { teamMembers } from "../data/team";
+
+// Hero images for parallax dividers
+import servicesHeroImage from "../assets/heroes/services-hero.png";
+import contactHeroImage from "../assets/heroes/contact-hero.png";
 ---
 
 <Layout title="Start">
 	<!-- Hero -->
 	<div class="content-section">
-		<HeroSection />
+		<HeroSection {...heroContent} />
 	</div>
 
 	<!-- Parallax: Services hero image -->
-	<ParallaxImage src={servicesMeta.heroImage} alt={servicesMeta.heroAlt} />
+	<ParallaxImage
+		src={servicesHeroImage}
+		alt="Baumpfleger bei der Kronenarbeit in einer alten Eiche"
+		eager={true}
+	/>
 
 	<!-- Services content -->
 	<div class="content-section">
-		<ServicesSection />
+		<ServicesSection {...servicesContent} />
 	</div>
 
 	<!-- Parallax: About hero image -->
-	<ParallaxImage src={aboutMeta.heroImage} alt={aboutMeta.heroAlt} />
+	<ParallaxImage src={aboutHeroImage} alt={aboutHeroAlt} />
 
 	<!-- About content -->
 	<div class="content-section">
-		<AboutSection />
+		<AboutSection {...aboutContent} teamMembers={teamMembers} />
 	</div>
 
 	<!-- Parallax: Contact hero image -->
-	<ParallaxImage src={contactMeta.heroImage} alt={contactMeta.heroAlt} />
+	<ParallaxImage
+		src={contactHeroImage}
+		alt="Einladender Weg unter alten Eichen in der Holsteinischen Schweiz"
+	/>
 
 	<!-- Contact content -->
 	<div class="content-section">

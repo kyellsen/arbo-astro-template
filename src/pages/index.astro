@@ -3,8 +3,9 @@
 // Für die Parallax-Block-Variante: Datei umbenennen und index-blocks.astro → index.astro
 import Layout from "../layouts/Layout.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
+import { heroContent } from "../data/hero";
 ---
 
 <Layout title="Start">
-	<HeroSection />
+	<HeroSection {...heroContent} />
 </Layout>

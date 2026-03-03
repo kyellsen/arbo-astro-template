@@ -1,11 +1,13 @@
 ---
 // src/layouts/Layout.astro
+import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/geist";
 import "@fontsource-variable/geist-mono";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SEOHead from "../components/SEOHead.astro";
+import { siteConfig } from "../site.config";
 
 interface Props {
 	/** Seitentitel (wird ins titleTemplate eingesetzt) */
@@ -24,11 +26,14 @@ const { title, description, ogImage, canonicalUrl, noindex } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="de" data-theme="arbo-light">
+<html lang={siteConfig.lang} data-theme={siteConfig.theme.light}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<ClientRouter />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="icon" type="image/webp" href="/favicon.webp" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<SEOHead
 			title={title}
 			description={description}
@@ -37,11 +42,42 @@ const { title, description, ogImage, canonicalUrl, noindex } = Astro.props;
 			noindex={noindex}
 		/>
 	</head>
-	<body class="min-h-screen flex flex-col font-sans bg-base-100 text-base-content antialiased">
+	<body class="body-gradient min-h-screen flex flex-col font-sans text-base-content antialiased">
+		<a
+			href="#main-content"
+			class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 btn btn-primary"
+		>
+			Zum Hauptinhalt springen
+		</a>
 		<Header />
-		<main class="grow">
+		<main id="main-content" class="grow">
 			<slot />
 		</main>
 		<Footer />
+		<script>
+			// Scroll-Reveal Logic (Astro View Transitions compatible)
+			function initScrollReveal() {
+				const observerOptions = {
+					root: null,
+					rootMargin: "0px",
+					threshold: 0.1,
+				};
+
+				const observer = new IntersectionObserver((entries, observer) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("is-visible");
+							observer.unobserve(entry.target);
+						}
+					});
+				}, observerOptions);
+
+				const revealElements = document.querySelectorAll(".reveal-on-scroll");
+				revealElements.forEach((el) => observer.observe(el));
+			}
+
+			// Run on initial load and after view transitions
+			document.addEventListener("astro:page-load", initScrollReveal);
+		</script>
 	</body>
 </html>

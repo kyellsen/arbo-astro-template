@@ -9,13 +9,14 @@ interface Props {
 	description: string;
 	imageSrc: ImageMetadata;
 	imageAlt: string;
+	color?: "primary" | "secondary" | "accent" | "info";
 }
 
-const { name, role, description, imageSrc, imageAlt } = Astro.props;
+const { name, role, description, imageSrc, imageAlt, color = "primary" } = Astro.props;
 ---
 
 <article
-	class="group bg-base-200 rounded-2xl border border-base-300 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+	class="group apple-glass rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
 >
 	<!-- Portrait Image -->
 	<div class="aspect-3/4 overflow-hidden">
@@ -32,7 +33,10 @@ const { name, role, description, imageSrc, imageAlt } = Astro.props;
 	<div class="p-6">
 		<h3 class="text-lg mb-1">{name}</h3>
 		<span
-			class="inline-block px-3 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide uppercase mb-3"
+			class:list={[
+				"inline-block px-3 py-0.5 rounded-full border text-xs font-mono font-semibold tracking-wide uppercase mb-3",
+				`bg-${color}/10 border-${color}/20 text-${color}`,
+			]}
 		>
 			{role}
 		</span>
